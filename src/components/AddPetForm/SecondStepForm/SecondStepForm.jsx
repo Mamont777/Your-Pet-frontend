@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
+import moment from 'moment';
 import { theme } from 'styles';
 import {
   SecondStepFormDiv,
@@ -18,14 +19,25 @@ import { validateField } from '../validatePet';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
-  const [errors, setErrors] = useState({});  
+  const [errors, setErrors] = useState({});
   const [isDisabled, setIsDisabled] = useState(false);
-  const [maxDate, setMaxDate] = useState();
 
-  const isNameFieldValid = Boolean(!errors.name && !!data.name);
-  const isBirthdayFieldValid = Boolean(!errors.birthday && !!data.birthday);
-  const isBreedFieldValid = Boolean(!errors.type && !!data.type);
-  const isTitleFieldValid = Boolean(!errors.title && !!data.title);
+  const isNameFieldValid = useMemo(
+    () => !errors.name && !!data.name,
+    [errors.name, data.name]
+  );
+  const isBirthdayFieldValid = useMemo(
+    () => !errors.birthday && !!data.birthday,
+    [errors.birthday, data.birthday]
+  );
+  const isBreedFieldValid = useMemo(
+    () => !errors.type && !!data.type,
+    [errors.type, data.type]
+  );
+  const isTitleFieldValid = useMemo(
+    () => !errors.title && !!data.title,
+    [errors.title, data.title]
+  );
 
   useEffect(() => {
     if (data.category === 'pet') {
@@ -44,7 +56,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
         )
       );
     }
-    setMaxDate(getCurrentDate());
+    getCurrentDate();
   }, [
     errors,
     data.category,
@@ -55,24 +67,22 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
   ]);
 
   function getCurrentDate() {
-    const now = new Date();
-    const year = String(now.getFullYear());
-    const month = String(now.getMonth() + 1).padStart(2, '0');
-    const day = String(now.getDate()).padStart(2, '0');
-    return `${year}-${month}-${day}`;
+    return moment().format('DD.MM.YYYY');
   }
 
-  const handleChange = e => {
-    const { name, value } = e.target;
-    setErrors(prevState => ({ ...prevState, [name]: '' }));
-    let inputValue = value;
+  const handleChange = ({ target }) => {
+    const { name, value } = target;
 
-    if (name === 'birthday') {
-      const [day, month, year] = value.split('-').reverse();
-      if (day && month && year) {
-        inputValue = `${year}-${month}-${day}`;
-      }
-    }
+    setErrors(prevState => ({ ...prevState, [name]: '' }));
+
+    const inputValue =
+      name === 'birthday'
+        ? new Date(value).toLocaleDateString('uk-UA', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+          })
+        : value;
 
     setData(prevState => ({
       ...prevState,
@@ -82,34 +92,19 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
 
   return (
     <>
-      <SecondStepFormDiv >
-        {data.category !== 'pet' && (
-          <>
-            <SecondStepFormTitle htmlFor="title">
-              Title of add
-              <SecondStepFormInput
-              style={{borderColor: `${!errors.title ? `${theme.colors.blue}`: !isTitleFieldValid ? `${theme.colors.red}` : `${theme.colors.green}`}`}}
-                // autoFocus
-                type="text"
-                name="title"
-                placeholder="Title of add"
-                value={data.title}
-                onChange={handleChange}
-                onBlur={() => validateField('title', data, setErrors)}
-                className={errors.title ? 'invalid' : ''}
-              />
-              {!!errors.title && <ErrorMessage message={errors.title} />}
-            </SecondStepFormTitle>
-            
-          </>
-        )}
-
+      <SecondStepFormDiv>
         <>
           <SecondStepFormTitle htmlFor="name">
             Pet's name
             <SecondStepFormInput
               type="text"
-              style={{borderColor: !errors.name  ? `${theme.colors.blue}` : isNameFieldValid ? null : `${theme.colors.red}`}}
+              style={{
+                borderColor: !errors.name
+                  ? `${theme.colors.blue}`
+                  : isNameFieldValid
+                  ? null
+                  : `${theme.colors.red}`,
+              }}
               placeholder="Type name pet"
               name="name"
               onChange={handleChange}
@@ -126,16 +121,24 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
           <SecondStepFormTitle htmlFor="birthday">
             Date of birth
             <SecondStepFormInput
-            style={{borderColor: `${!errors.birthday ? `${theme.colors.blue}`: !isBirthdayFieldValid ? `${theme.colors.red}` : `${theme.colors.green}`}`}}
-              type="data"
-              placeholder="Type date of birth in format DD-MM-YYYY"
+              style={{
+                borderColor: `${
+                  !errors.birthday
+                    ? `${theme.colors.blue}`
+                    : !isBirthdayFieldValid
+                    ? `${theme.colors.red}`
+                    : `${theme.colors.green}`
+                }`,
+              }}
+              type="date"
+              placeholder="Type date of birth in format DD.MM.YYYY"
               name="birthday"
-              max={maxDate}
+              data-pattern="**.**.****"
+              max={getCurrentDate()}
               onChange={handleChange}
-              value={data.birthday.split('.').join('-')} 
+              value={moment(data.birthday, 'DD.MM.YYYY').format('YYYY-MM-DD')}
               onBlur={() => validateField('birthday', data, setErrors)}
               className={errors.birthday ? 'invalid' : ''}
-              required
             />
             {!!errors.birthday && <ErrorMessage message={errors.birthday} />}
           </SecondStepFormTitle>
@@ -147,7 +150,13 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
             <SecondStepFormInput
               type="text"
               placeholder="Type of pet"
-              style={{borderColor: !errors.type  ? `${theme.colors.blue}` : isBreedFieldValid ? null : `${theme.colors.red}`}}
+              style={{
+                borderColor: !errors.type
+                  ? `${theme.colors.blue}`
+                  : isBreedFieldValid
+                  ? null
+                  : `${theme.colors.red}`,
+              }}
               name="type"
               onChange={handleChange}
               value={data.type}
@@ -173,11 +182,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
         </AddPetBtnItem>
 
         <AddPetBtnItem>
-          {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
-          <AddPetBtnCancel
-            type="button"
-            onClick={backStep}
-          >
+          <AddPetBtnCancel type="button" onClick={backStep}>
             <AddPetBtnCancelDiv>
               <ArrowLeft width="24" height="24" />
               Back

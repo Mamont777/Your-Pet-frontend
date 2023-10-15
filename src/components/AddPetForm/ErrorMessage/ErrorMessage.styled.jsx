@@ -9,5 +9,4 @@ export const ErrorText = styled.p`
   font-size: ${theme.fontSizes.xs};
   line-height: 1.33;
   color: ${theme.colors.red};
-  /* transform: translateY(100%); */
 `;

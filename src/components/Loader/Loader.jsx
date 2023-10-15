@@ -1,5 +1,4 @@
 import { StyledOverlay } from './Loader.styled';
-
 const { ColorRing } = require('react-loader-spinner');
 
 const Loader = () => {

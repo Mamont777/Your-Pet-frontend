@@ -15,8 +15,7 @@ import {
 import { ArrowLeft, Paw } from 'components/icons';
 import { Link } from 'react-router-dom';
 
-const FirstStepForm = ({ data, values, setData, nextStep, cancel }) => {
-  // console.log("values:", values)
+const FirstStepForm = ({ data, setData, nextStep, cancel }) => {
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
@@ -24,14 +23,8 @@ const FirstStepForm = ({ data, values, setData, nextStep, cancel }) => {
     else setIsDisabled(false);
   }, [data.category]);
 
-  // console.log(isDisabled);
-
   const handleChange = e => {
     const { name, value } = e.target;
-    console.log(' value :', value);
-    console.log('name:', name);
-    // console.log(" value :",  value )
-    // console.log("name:", name)
 
     setData(prevState => ({
       ...prevState,
@@ -51,8 +44,6 @@ const FirstStepForm = ({ data, values, setData, nextStep, cancel }) => {
             checked={data.category === 'pet'}
             name="category"
             onChange={handleChange}
-            // id="my-pet"
-            // name="category"
           />
           your pet
         </FirstStepFormItemLabel>
@@ -61,9 +52,7 @@ const FirstStepForm = ({ data, values, setData, nextStep, cancel }) => {
             type="radio"
             value="sell"
             checked={data.category === 'sell'}
-            // name="sell"
             onChange={handleChange}
-            // id="sell"
             name="category"
           />
           sell
@@ -73,9 +62,7 @@ const FirstStepForm = ({ data, values, setData, nextStep, cancel }) => {
             type="radio"
             value="lost-found"
             checked={data.category === 'lost-found'}
-            // name="lostFound"
             onChange={handleChange}
-            // id="lost-found"
             name="category"
           />
           lost/found
@@ -85,9 +72,7 @@ const FirstStepForm = ({ data, values, setData, nextStep, cancel }) => {
             type="radio"
             value="in-good-hands"
             checked={data.category === 'in-good-hands'}
-            // name="hands"
             onChange={handleChange}
-            // id="for-free"
             name="category"
           />
           in good hands
@@ -98,28 +83,21 @@ const FirstStepForm = ({ data, values, setData, nextStep, cancel }) => {
         <AddPetBtnItem>
           <AddPetBtnNext
             type="button"
-            // text="Next"
-            // icon={<Paw width="24" height="24" fill="#FEF9F9" />}
             onClick={nextStep && (() => nextStep(false))}
-            // filled={false}
             disabled={isDisabled}
           >
             Next
-            {/* {step === 3 ? 'Done' : 'Next'} */}
             <Paw width="24" height="24" fill="#FEF9F9" />
           </AddPetBtnNext>
         </AddPetBtnItem>
 
         <AddPetBtnItem>
-          {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
           <Link to={cancel}>
             <AddPetBtnCancel type="button">
               <AddPetBtnCancelDiv>
                 <ArrowLeft width="24" height="24" />
                 Cancel
-                {/* {step === 1 ? 'Cancel' : 'Back'} */}
               </AddPetBtnCancelDiv>
-              {/* </Link> */}
             </AddPetBtnCancel>
           </Link>
         </AddPetBtnItem>
@@ -131,6 +109,11 @@ const FirstStepForm = ({ data, values, setData, nextStep, cancel }) => {
 FirstStepForm.propTypes = {
   data: PropTypes.object.isRequired,
   setData: PropTypes.func.isRequired,
+  cancel: PropTypes.oneOfType([
+    PropTypes.string.isRequired,
+    PropTypes.object.isRequired,
+  ]),
+  nextStep: PropTypes.func.isRequired,
 };
 
 export default FirstStepForm;

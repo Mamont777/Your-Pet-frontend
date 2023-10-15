@@ -4,33 +4,24 @@ import { theme } from 'styles';
 // --------  StepTitles
 
 export const StepTitlesContainer = styled.ul`
-  // margin-bottom: 24px;
-
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     text-align: center;
   }
 `;
 
 export const StepTitlesItems = styled.li`
-  // position: relative;
-  list-style: none;
   display: inline-block;
-  text-align: start;
   min-width: 80px;
-
   margin-right: 12px;
 
-  font-style: normal;
   font-size: 10px;
-  line-height: 26.5px;
+  line-height: 2.5px;
+  list-style: none;
+  text-align: start;
   color: ${theme.colors.grey};
 
   &:last-child {
     margin-right: 0px;
-  }
-
-  &:nth-child(2) {
-    // margin-right: 16px;
   }
 
   &.current {
@@ -45,9 +36,8 @@ export const StepTitlesItems = styled.li`
     min-width: 120px;
 
     font-size: 16px;
-    font-style: normal;
     font-weight: 500;
-    line-height: 1.65625; // 26.5px; /* 165.625% */
+    line-height: 0.6;
   }
 `;
 

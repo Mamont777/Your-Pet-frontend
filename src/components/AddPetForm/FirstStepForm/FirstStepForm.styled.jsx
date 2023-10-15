@@ -16,7 +16,7 @@ export const FirstStepFormList = styled.div`
   margin-top: 24px;
 
   @media (min-width: 768px) {
-    margin-bottom: 137px; //20px;;
+    margin-bottom: 137px;
   }
 `;
 export const FirstStepFormItemInput = styled(Field)`
@@ -45,8 +45,6 @@ export const FirstStepFormItemLabel = styled.label.withConfig({
     background-color: ${theme.colors.blue};
     color: ${theme.colors.white};
   }
-
-  // ${FirstStepFormItemInput}:checked + && {} //active
 
   ${({ active }) =>
     active ? 'background-color:  #54adff; color: #FFFFFF; }' : ''}

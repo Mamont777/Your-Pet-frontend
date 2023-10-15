@@ -5,78 +5,70 @@ import { Field } from 'formik';
 //  --------- AddPetForm
 
 export const SecondStepFormDiv = styled.div`
-
   display: flex;
   flex-direction: column;
   margin-top: 16px;
   margin-bottom: 24px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    // font-size: 28px;
     margin-bottom: 40px;
   }
 `;
 
 export const InputWraper = styled.div`
-position: relative;
+  position: relative;
 `;
-
 
 export const SecondStepFormTitle = styled.label`
   position: relative;
-  color: ${theme.colors.black}; // #111111
-  font-family: ${theme.fonts.main.medium}; // Manrope 500
-  font-weight: 500;
-  font-size: ${theme.fontSizes.s}; //14px;
-  font-style: normal;
-  line-height: normal;
-
   display: flex;
   flex-direction: column;
   gap: 4px;
-
   margin-bottom: 20px;
+
+  color: ${theme.colors.black};
+  font-family: ${theme.fonts.main.medium};
+  font-weight: 500;
+  font-size: ${theme.fontSizes.s};
+  line-height: normal;
 
   &:nth-last-child(-n + 1) {
     margin-bottom: 0px;
   }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    font-size: ${theme.fontSizes.l}; //20px;
+    font-size: ${theme.fontSizes.l};
   }
 `;
 
-// export const inputWrapper = styled.div`
-// position: relative;
-// `;
-
 export const SecondStepFormInput = styled(Field)`
-  font-family: Manrope;
-  font-size: 14px; //16px
-
-  @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    font-size: 16px;
-  }
-
-  font-weight: 400;
-  line-height: 1.5; /* 24px */
-  letter-spacing: 0.56px; // 0.64px;
-  color: ${theme.colors.grey};
-
   display: flex;
   align-items: center;
   gap: 10px;
   flex-shrink: 0;
   padding: 8px 16px;
   border-radius: 40px;
-  border: 1px solid ;
+  border: 1px solid;
+
+  font-family: Manrope;
+  font-size: 14px;
+  ont-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.56px;
+  color: ${theme.colors.grey};
+
   &:hover,
   &focus,
   &:active {
-    border: 1px solid ;
+    border: 1px solid;
     outline: 1px solid ${theme.colors.blue};
   }
-  // @media (min-width: 768px) {
-  //   flex-direction: row-reverse;
-  // }
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: 16px;
+  }
+
+  &[type='date']::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+  }
 `;
