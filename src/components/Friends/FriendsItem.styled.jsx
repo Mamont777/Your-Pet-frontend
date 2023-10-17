@@ -107,8 +107,6 @@ const ImageWrapper = styled.div`
 `;
 
 const InfoTitle = styled.p`
-  display: flex;
-  justify-content: space-between;
   font-family: Manrope;
   font-weight: 600;
   line-height: 1.34;
@@ -137,9 +135,8 @@ const InfoTitle = styled.p`
 `;
 
 const InfoText = styled.p`
-  display: flex;
-  justify-content: space-between;
   line-height: 1.34;
+
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     font-size: 14px;
     line-height: 1.36;
@@ -152,6 +149,29 @@ const InfoText = styled.p`
 
   @media screen and (max-width: 767px) {
     font-size: 12px;
+  }
+`;
+
+const InfoLink = styled.a`
+  text-decoration: none;
+  font-weight: 500;
+  font-size: ${theme.fontSizes.xs};
+  line-height: 1.34;
+  color: inherit;
+
+  :hover,
+  :focus {
+    color: ${theme.colors.blue};
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: ${theme.fontSizes.s};
+    line-height: 1.36;
+  }
+
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    font-size: ${theme.fontSizes.m};
+    line-height: 1.38;
   }
 `;
 
@@ -220,6 +240,7 @@ export {
   ImageWrapper,
   InfoTitle,
   InfoText,
+  InfoLink,
   WorkTimeList,
   WorkTimeItem,
   WorkTimeItemCurrent,

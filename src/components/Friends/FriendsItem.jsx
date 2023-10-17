@@ -9,6 +9,7 @@ import {
   InfoTitle,
   InfoText,
   WorkTime,
+  InfoLink,
 } from './FriendsItem.styled';
 import myImage from '../../images/friends/default-friends.png';
 import WorkTimePopup from './WorkTimePopup';
@@ -79,20 +80,32 @@ const FriendsItem = ({ friends }) => {
           </FriendsInfoWrapper>
 
           <FriendsInfoWrapper>
-            <InfoTitle href={addressUrl && addressUrl} target="_blank">
-              Adress:{' '}
-            </InfoTitle>
-            <InfoText>{address ? address : 'website only'}</InfoText>
+            <InfoTitle>Adress:</InfoTitle>
+            {addressUrl ? (
+              <InfoLink href={addressUrl && addressUrl} target="_blank">
+                {address}
+              </InfoLink>
+            ) : (
+              <InfoText>website only</InfoText>
+            )}
           </FriendsInfoWrapper>
 
           <FriendsInfoWrapper>
             <InfoTitle>Email: </InfoTitle>
-            <InfoText>{email ? email : 'website only'}</InfoText>
+            {email ? (
+              <InfoLink href={`mailto:${email}`}>{email}</InfoLink>
+            ) : (
+              <InfoText>website only</InfoText>
+            )}
           </FriendsInfoWrapper>
 
           <FriendsInfoWrapper>
-            <InfoTitle>Phone: </InfoTitle>
-            <InfoText>{phone ? phone : 'email only'}</InfoText>
+            <InfoTitle>Phone:</InfoTitle>
+            {phone ? (
+              <InfoLink href={`tel:${phone}`}>{phone}</InfoLink>
+            ) : (
+              <InfoText>email only</InfoText>
+            )}
           </FriendsInfoWrapper>
         </FriendsInfoList>
       </ItemWrapper>

@@ -37,7 +37,6 @@ const WorkTimePopup = ({ workTime }) => {
       </WorkTimeItem>
     )
   );
-  console.log('workDays', workDays);
   return <WorkTimeList>{workDays}</WorkTimeList>;
 };
 
