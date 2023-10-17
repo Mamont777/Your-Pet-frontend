@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Item,
   Title,
@@ -8,56 +8,93 @@ import {
   ImageWrapper,
   InfoTitle,
   InfoText,
+  WorkTime,
 } from './FriendsItem.styled';
-
 import myImage from '../../images/friends/default-friends.png';
+import WorkTimePopup from './WorkTimePopup';
+
+const dayNow = new Date();
+const numberOfDay = dayNow.getDay();
 
 const FriendsItem = ({ friends }) => {
   const { imageUrl, title, url, addressUrl, email, phone, workDays, address } =
     friends;
-
   console.table(friends);
+
+  const [isVisible, setIsVisible] = useState(true);
+
+  const week = ['MN', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'];
+  const newWorkDays =
+    workDays &&
+    workDays.map((day, index) => {
+      return { day: week[index], ...day };
+    });
 
   return (
     <Item>
-      <Title href={url && url}>{title}</Title>
+      <Title href={url && url} target="_blank" rel="noreferrer noopen nofollow">
+        {title}
+      </Title>
 
       <ItemWrapper>
         <ImageWrapper>
           <img src={imageUrl ? imageUrl : myImage} alt={title} />
         </ImageWrapper>
-        <FriendsInfoWrapper>
-          <FriendsInfoList>
-            <li>
-              <InfoTitle>Time:</InfoTitle>
-              <InfoText>
-                {workDays === null ||
-                workDays === undefined ||
-                workDays.length === 0 ||
-                workDays[0].isOpen === false
-                  ? 'day and night'
-                  : `${workDays[0].from} - ${workDays[0].to}`}
-              </InfoText>
-            </li>
 
-            <li>
-              <InfoTitle href={addressUrl && addressUrl} target="_blank">
-                Adress:{' '}
-              </InfoTitle>
-              <InfoText>{address ? address : 'website only'}</InfoText>
-            </li>
+        <FriendsInfoList>
+          <FriendsInfoWrapper
+            onClick={() => {
+              setIsVisible(!isVisible);
+            }}
+            onMouseLeave={() => {
+              setIsVisible(true);
+            }}
+          >
+            {workDays === null ||
+            workDays === undefined ||
+            workDays.length === 0 ? (
+              <>
+                <InfoTitle>Time:</InfoTitle>
+                <InfoText>day and night</InfoText>
+              </>
+            ) : (
+              <>
+                {workDays[numberOfDay - 1]?.isOpen ? (
+                  <>
+                    <InfoTitle>Time:</InfoTitle>
+                    <WorkTime>
+                      {workDays[numberOfDay - 1]?.from}-
+                      {workDays[numberOfDay - 1]?.to}
+                    </WorkTime>
+                  </>
+                ) : (
+                  <>
+                    <InfoTitle>Time:</InfoTitle>
+                    <WorkTime>Closed</WorkTime>
+                  </>
+                )}
+                {isVisible || <WorkTimePopup workTime={newWorkDays} />}
+              </>
+            )}
+          </FriendsInfoWrapper>
 
-            <li>
-              <InfoTitle>Email: </InfoTitle>
-              <InfoText>{email ? email : 'website only'}</InfoText>
-            </li>
+          <FriendsInfoWrapper>
+            <InfoTitle href={addressUrl && addressUrl} target="_blank">
+              Adress:{' '}
+            </InfoTitle>
+            <InfoText>{address ? address : 'website only'}</InfoText>
+          </FriendsInfoWrapper>
 
-            <li>
-              <InfoTitle>Phone: </InfoTitle>
-              <InfoText>{phone ? phone : 'email only'}</InfoText>
-            </li>
-          </FriendsInfoList>
-        </FriendsInfoWrapper>
+          <FriendsInfoWrapper>
+            <InfoTitle>Email: </InfoTitle>
+            <InfoText>{email ? email : 'website only'}</InfoText>
+          </FriendsInfoWrapper>
+
+          <FriendsInfoWrapper>
+            <InfoTitle>Phone: </InfoTitle>
+            <InfoText>{phone ? phone : 'email only'}</InfoText>
+          </FriendsInfoWrapper>
+        </FriendsInfoList>
       </ItemWrapper>
     </Item>
   );

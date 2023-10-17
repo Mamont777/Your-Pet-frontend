@@ -55,101 +55,75 @@ const AddPetForm = () => {
     setStep(prevState => prevState - 1);
   };
 
-  const handleSubmit = values => {
+  const handleSubmit = () => {
     if (!data.category) return;
 
-    if (data.category === 'pet') {
-      const pets = {
-        name: data.name,
-        petURL: data.petURL,
-        birthday: data.birthday,
-        type: data.type,
-        describe: data.describe,
-      };
-      // console.log(' pets:', pets);
+    const commonData = {
+      name: data.name,
+      petURL: data.petURL,
+      birthday: data.birthday,
+      type: data.type,
+      describe: data.describe,
+    };
 
-      const formData = new FormData();
-      for (let keys in pets) {
-        formData.append(keys, pets[keys]);
-      }
-      dispatch(addPet(formData));
-      toggleModal();
-      navigate('/user');
-      return;
-    }
+    const specificData = {};
 
     if (data.category === 'in-good-hands' || data.category === 'lost-found') {
-      const pets = {
-        name: data.name,
-        petURL: data.petURL,
-        birthday: data.birthday,
-        type: data.type,
-        describe: data.describe,
-        category: data.category,
-        title: data.title,
-        sex: data.sex,
-        location: data.location,
-      };
-      const formData = new FormData();
-      for (let keys in pets) {
-        formData.append(keys, pets[keys]);
-      }
-      dispatch(addNotice(formData));
-      toggleModal();
-
-      if (data.category === 'in-good-hands') {
-        navigate('/notices/in-good-hands');
-        
-      }
-      if (data.category === 'lost-found') {
-        navigate('/notices/lost-found');
-        
-      }
-
-      return;
+      specificData.category = data.category;
+      specificData.title = data.title;
+      specificData.sex = data.sex;
+      specificData.location = data.location;
     }
 
     if (data.category === 'sell') {
-      const pets = {
-        name: data.name,
-        petURL: data.petURL,
-        birthday: data.birthday,
-        type: data.type,
-        describe: data.describe,
-        category: data.category,
-        title: data.title,
-        price: data.price,
-        sex: data.sex,
-        location: data.location,
-      };
-      const formData = new FormData();
-      for (let keys in pets) {
-        formData.append(keys, pets[keys]);
-      }
-      dispatch(addNotice(formData));
-      toggleModal();
-      navigate('/notices/sell');
-      return;
+      specificData.category = data.category;
+      specificData.title = data.title;
+      specificData.price = data.price;
+      specificData.sex = data.sex;
+      specificData.location = data.location;
+    }
+
+    const pets = { ...commonData, ...specificData };
+
+    const formData = new FormData();
+
+    for (let key in pets) {
+      formData.append(key, pets[key]);
+    }
+
+    dispatch(addNotice(formData));
+    toggleModal();
+
+    switch (data.category) {
+      case 'in-good-hands':
+        navigate('/notices/in-good-hands');
+        break;
+      case 'lost-found':
+        navigate('/notices/lost-found');
+        break;
+      case 'sell':
+        navigate('/notices/sell');
+        break;
+      case 'pet':
+        dispatch(addPet(formData));
+        navigate('/user');
+        break;
+      default:
+        navigate('/user');
     }
   };
 
-  // console.log(location); //{pathname: '/add-pet', search: '', hash: '', state: null, key: 'default'}
-  // const backPage = step === 1 ? location.state?.from ?? '/user' : '';
   const backPage = location.state?.from ?? '/user';
 
-  // console.log('data:', data);
   return (
     <AddPetDiv data={data} step={step}>
       <Formik
         initialValues={data}
         validationSchema={validatePetSchema}
         onSubmit={handleSubmit}
-        // validateOnChange={false}
       >
         {({ values, errors, touched, setFieldValue }) => (
-          <AddPetContainerForm
-          // onClick={onClick}
-          >
+          <AddPetContainerForm>
             <AddPetFormTitle>{title}</AddPetFormTitle>
             <StepTitles step={step} />
             {step === 1 && (
@@ -197,33 +171,11 @@ const AddPetForm = () => {
                 />
               )
             )}
-
-            {/* <AddPetBtnList>
-              <AddPetBtnItem>
-                <AddPetBtnNext type="button">
-                  {step === 3 ? 'Done' : 'Next'}
-                  <Paw width="24" height="24" fill="#FEF9F9" />
-                </AddPetBtnNext>
-              </AddPetBtnItem>
-
-              <AddPetBtnItem>
-                <AddPetBtnCancel type="button" onClick={back}>
-                  <Link to={backPage}>
-                    <AddPetBtnCancelDiv>
-                      <ArrowLeft width="24" height="24" />
-                      {step === 1 ? 'Cancel' : 'Back'}
-                    </AddPetBtnCancelDiv>
-                  </Link>
-                </AddPetBtnCancel>
-              </AddPetBtnItem>
-            </AddPetBtnList> */}
           </AddPetContainerForm>
         )}
       </Formik>
       {isModalOpen && !isLoading && (
-        <ModalAddPet toggleModal={() => navigate(backPage)}>
-          {/* <AddPetModal backLink={backPage} category={data.category} /> */}
-        </ModalAddPet>
+        <ModalAddPet toggleModal={() => navigate(backPage)}></ModalAddPet>
       )}
     </AddPetDiv>
   );

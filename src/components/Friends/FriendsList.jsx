@@ -11,7 +11,7 @@ const FriendsList = () => {
       <FriendsListItem>
         {friends ? (
           friends.map(friend => (
-            <FriendsItem key={friends._id} friends={friend} />
+            <FriendsItem key={friend._id} friends={friend} />
           ))
         ) : (
           <p>No friends</p>

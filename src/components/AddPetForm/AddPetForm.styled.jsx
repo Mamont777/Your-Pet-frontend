@@ -1,24 +1,18 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { Form } from 'formik';
 import { theme } from 'styles';
 
 //  --------- AddPetForm
 export const AddPetDiv = styled.div`
-  // width: fit-content;
-  // padding: 20px 8px 17px;
-  // margin: 68px auto;
   margin: 20px auto;
   border-radius: 40px;
   box-shadow: ${theme.boxShadows.main};
   background-color: ${theme.colors.white};
 
-  font-family: ${theme.fonts.main.medium}; //500
-  font-size: ${theme.fontSizes.s}; //14px
-  line-height: 1.5; //21px
+  font-family: ${theme.fonts.main.medium};
+  font-size: ${theme.fontSizes.s};
+  line-height: 1.5;
 
-  @media screen and (min-width: 498px) {
-    // width: 458px;
-  }
   @media screen and (min-width: ${theme.breakpoints
       .mobile}) and (max-width: 767px) {
     width: 280px;
@@ -30,7 +24,6 @@ export const AddPetDiv = styled.div`
         ? 'width: 704px;'
         : 'width: 458px;'};
   }
-  // and (max-width: ${theme.breakpoints.desktop})
 `;
 
 export const AddPetContainerForm = styled(Form)`
@@ -53,19 +46,19 @@ export const AddPetFormTitle = styled.h2`
 
   padding-left: 12px;
   line-height: normal;
-  font-size: ${theme.fontSizes.l}; //20px
+  font-size: ${theme.fontSizes.l};
   color: ${theme.colors.black};
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
+    padding-left: 0px;
+
     font-size: 28px;
     font-style: normal;
     font-weight: 500;
-
-    padding-left: 0px;
-
     text-align: center;
   }
 `;
+
 //  --------- AddPetBtn
 
 export const AddPetBtnList = styled.ul`
@@ -83,21 +76,20 @@ export const AddPetBtnList = styled.ul`
 
 export const AddPetBtnItem = styled.li`
   list-style: none;
-  font-size: ${theme.fontSizes.m}; // 16px
-  font-weight: ${theme.fonts.main.bold}; // 700
+  font-size: ${theme.fontSizes.m};
+  font-weight: ${theme.fonts.main.bold};
 `;
 
 export const AddPetBtnNext = styled.button`
+  min-width: 248px;
   display: flex;
   justify-content: center;
   gap: 12px;
-
   padding: 8px 28px;
-  letter-spacing: 0.56px;
-  font-size: ${theme.fontSizes.m}; // 16px
-  font-weight: ${theme.fonts.main.bold}; // 700
 
-  min-width: 248px;
+  letter-spacing: 0.56px;
+  font-size: ${theme.fontSizes.m};
+  font-weight: ${theme.fonts.main.bold};
   border-radius: 40px;
 
   color: ${theme.colors.white};
@@ -113,9 +105,6 @@ export const AddPetBtnNext = styled.button`
       fill: ${theme.colors.white};
     }
   }
-  @media (min-width: 768px) {
-    // font-family: ${theme.fonts.main.semiBold};
-  }
 
   &:disabled {
     background-color: ${theme.colors.blueLight};
@@ -123,16 +112,29 @@ export const AddPetBtnNext = styled.button`
   }
 `;
 
+const moveArrow = keyframes`
+0% {
+  transform: translateX(0);
+}
+15% {
+  transform: translateX(15%);
+}
+60% {
+  transform: translateX(-30%);
+}
+100% {
+  transform: translateX(0);
+}
+`;
+
 export const AddPetBtnCancel = styled.button`
   padding: 0px 0px;
   border-radius: 40px;
-  font-weight: ${theme.fonts.main.bold}; // 700
-  font-size: ${theme.fontSizes.m}; // 16px
+  font-weight: ${theme.fonts.main.bold};
+  font-size: ${theme.fontSizes.m};
   line-height: 22px;
   letter-spacing: 0.64px;
-  color: ${theme.colors.blue}; // #54adff;
-  // border: none;
-  // outline: none;
+  color: ${theme.colors.blue};
   background-color: transparent;
   transition: all ${theme.transition.main};
 
@@ -142,6 +144,11 @@ export const AddPetBtnCancel = styled.button`
     svg {
       stroke: ${theme.colors.yellow};
     }
+  }
+
+  &:hover svg,
+  &:focus svg {
+    animation: ${moveArrow} 600ms linear infinite;
   }
 `;
 

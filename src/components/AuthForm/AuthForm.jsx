@@ -47,14 +47,14 @@ export default function AuthForm() {
   const toggleConfirmPassword = () =>
     setConfirmPasswordShow(prevState => !prevState);
 
-  const handleSubmit = async (values, { resetForm, setSubmitting }) => {
+  const handleSubmit = async (values, { resetForm }) => {
     const data = {
       name: values.name,
       email: values.email,
       password: values.password,
     };
     const responsed = await dispatch(register(data));
-    // console.log(' responsed :', responsed);
+
     if (responsed) {
       resetForm();
     }
@@ -73,7 +73,7 @@ export default function AuthForm() {
         initialValues={initialValues}
         onSubmit={handleSubmit}
       >
-        {({ values, errors, touched, setFieldValue, isSubmitting }) => (
+        {({ errors, touched, setFieldValue, isSubmitting }) => (
           <Form>
             <Titel>Registration</Titel>
             <FormField>

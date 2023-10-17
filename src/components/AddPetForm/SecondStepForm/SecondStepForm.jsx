@@ -93,6 +93,32 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
   return (
     <>
       <SecondStepFormDiv>
+        {data.category !== 'pet' && (
+          <>
+            <SecondStepFormTitle htmlFor="title">
+              Title of add
+              <SecondStepFormInput
+                style={{
+                  borderColor: `${
+                    !errors.title
+                      ? `${theme.colors.blue}`
+                      : !isTitleFieldValid
+                      ? `${theme.colors.red}`
+                      : `${theme.colors.green}`
+                  }`,
+                }}
+                type="text"
+                name="title"
+                placeholder="Title of add"
+                value={data.title}
+                onChange={handleChange}
+                onBlur={() => validateField('title', data, setErrors)}
+                className={errors.title ? 'invalid' : ''}
+              />
+              {!!errors.title && <ErrorMessage message={errors.title} />}
+            </SecondStepFormTitle>
+          </>
+        )}
         <>
           <SecondStepFormTitle htmlFor="name">
             Pet's name

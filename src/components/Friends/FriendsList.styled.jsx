@@ -15,17 +15,15 @@ const FriendsListContainer = styled.div`
 `;
 
 const FriendsListItem = styled.ul`
-
- @media screen and (min-width: 768px) {
-      display: flex;
+  @media screen and (min-width: 768px) {
+    display: flex;
     flex-wrap: wrap;
     gap: 32px;
   }
 
-  @media screen and (min-width: 1281px) 
+  @media screen and (min-width: 1281px) {
     gap: 36px;
   }
-
 `;
 
 export { FriendsListContainer, FriendsListItem };

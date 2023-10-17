@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import { ArrowLeft, Female, Male, Paw, Plus } from 'components/icons';
 import {
@@ -12,10 +12,8 @@ import {
   ThirdStepFormTitle,
   ThirdStepSexContainer,
   ThirdStepSexDiv,
-  // ThirdStepSexFemaleLabel,
   ThirdStepSexInput,
   ThirdStepSexLabel,
-  // ThirdStepSexMaleLabel,
   ThirdStepSexPhotoDiv,
   ThirdStepSexTitle,
   ThirdStepFormPhotoDiv,
@@ -39,11 +37,29 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
   const [imageValue, setImageValue] = useState('');
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
-  const isPetPhotoFieldValid = Boolean(!errors.petURL && !!data.petURL);
-  const isCommentsFieldValid = Boolean(!errors.describe);
-  const isLocationFieldValid = Boolean(!errors.location && !!data.location);
-  const isSexFieldValid = Boolean(!errors.sex && !!data.sex);
-  const isPriceFieldValid = Boolean(!errors.price && !!data.price);
+  const isPetPhotoFieldValid = useMemo(
+    () => !errors.petURL && !!data.petURL,
+    [errors.petURL, data.petURL]
+  );
+  const isCommentsFieldValid = useMemo(
+    () => !errors.describe,
+    [errors.describe]
+  );
+
+  const isLocationFieldValid = useMemo(
+    () => !errors.location && !!data.location,
+    [errors.location, data.location]
+  );
+
+  const isSexFieldValid = useMemo(
+    () => !errors.sex && !!data.sex,
+    [errors.sex, data.sex]
+  );
+
+  const isPriceFieldValid = useMemo(
+    () => !errors.price && !!data.price,
+    [errors.price, data.price]
+  );
 
   useEffect(() => {
     const handleResize = () => {
@@ -93,7 +109,6 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
   const handleChange = e => {
     const { name, value, type, files } = e.target;
     const fieldValue = type === 'file' ? files[0] : value;
-    // console.log('fieldValue:', fieldValue);
 
     setErrors(prevState => ({ ...prevState, [name]: '' }));
 
@@ -110,7 +125,6 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
   return (
     <>
       <ThirdStepFormDiv>
-        {/* sex for sell, lostFond, and in good hands*/}
         <ThirdStepSexPhotoDiv>
           {data.category !== 'pet' && (
             <ThirdStepSexContainer>
@@ -153,7 +167,6 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               </ThirdStepSexDiv>
             </ThirdStepSexContainer>
           )}
-          {/* --- */}
           {/* label */}
           <ThirdStepFormPhotoTitle
             htmlFor="pet-image"
@@ -176,7 +189,6 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                 ></ThirdStepFormImgPreview>
               )}
             </ThirdStepFormPlus>
-            {/* input */}
             {/* -----FileInput - input */}
             <ThirdStepFormImgInput
               type="file"
@@ -186,21 +198,29 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               onChange={handleChange}
               value={imageValue}
               onBlur={() => validateField('petURL', data, setErrors)}
-              accept=".jpg, .png"
+              accept=".jpg, .png, .jpeg, .webp"
               required
             />
             {!!errors.petURL && <ErrorMessage message={errors.petURL} />}
           </ThirdStepFormPhotoTitle>
         </ThirdStepSexPhotoDiv>
 
-        {/* location price for sell lostFond ingood hands*/}
+        {/* location price for sell lostFound ingood hands*/}
         <ThirdStepFormContainer>
           {data.category !== 'pet' && (
             <>
               <ThirdStepFormTitle>
                 Location
                 <ThirdStepFormInput
-                  style={{borderColor: `${!errors.location ? `${theme.colors.blue}`: !isLocationFieldValid ? `${theme.colors.red}` : `${theme.colors.green}`}`}}
+                  style={{
+                    borderColor: `${
+                      !errors.location
+                        ? `${theme.colors.blue}`
+                        : !isLocationFieldValid
+                        ? `${theme.colors.red}`
+                        : `${theme.colors.green}`
+                    }`,
+                  }}
                   type="text"
                   required
                   name="location"
@@ -210,9 +230,10 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                   onBlur={() => validateField('location', data, setErrors)}
                   className={errors.location ? 'invalid' : ''}
                 />
-                {!!errors.location && <ErrorMessage message={errors.location} />}
+                {!!errors.location && (
+                  <ErrorMessage message={errors.location} />
+                )}
               </ThirdStepFormTitle>
-              
             </>
           )}
           {data.category === 'sell' && (
@@ -220,7 +241,15 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               <ThirdStepFormTitle>
                 Price
                 <ThirdStepFormInput
-                style={{borderColor: `${!errors.price? `${theme.colors.blue}`: !isPriceFieldValid ? `${theme.colors.red}` : `${theme.colors.green}`}`}}
+                  style={{
+                    borderColor: `${
+                      !errors.price
+                        ? `${theme.colors.blue}`
+                        : !isPriceFieldValid
+                        ? `${theme.colors.red}`
+                        : `${theme.colors.green}`
+                    }`,
+                  }}
                   type="number"
                   name="price"
                   placeholder="Type of price"
@@ -230,9 +259,8 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
                   className={errors.price ? 'invalid' : ''}
                   required
                 />
-                {!!errors.price && <ErrorMessage  message={errors.price} />}
+                {!!errors.price && <ErrorMessage message={errors.price} />}
               </ThirdStepFormTitle>
-              
             </>
           )}
           {/* ----- -------- */}
@@ -241,10 +269,18 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               Comments
               <ThirdStepFormComments
                 type="text"
-                style={{borderColor: `${!errors.describe? `${theme.colors.blue}`: !isCommentsFieldValid ? `${theme.colors.red}` : `${theme.colors.green}`}`}}
+                style={{
+                  borderColor: `${
+                    !errors.describe
+                      ? `${theme.colors.blue}`
+                      : !isCommentsFieldValid
+                      ? `${theme.colors.red}`
+                      : `${theme.colors.green}`
+                  }`,
+                }}
                 component="textarea"
                 name="describe"
-                placeholder="Type of pet"
+                placeholder="Type comments"
                 onChange={handleChange}
                 data={data}
                 step={step}
@@ -255,7 +291,6 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
               />
               {!!errors.describe && <ErrorMessage message={errors.describe} />}
             </ThirdStepFormTitle>
-            
           </ThirdStepFormTitleContainer>
         </ThirdStepFormContainer>
       </ThirdStepFormDiv>
@@ -267,22 +302,15 @@ const ThirdStepFormExpanded = ({ data, setData, step, submit, backStep }) => {
             disabled={isDisabled}
           >
             Done
-            {/* {step === 3 ? 'Done' : 'Next'} */}
             <Paw width="24" height="24" fill="#FEF9F9" />
           </AddPetBtnNext>
         </AddPetBtnItem>
 
         <AddPetBtnItem>
-          {/* повернути на сторінку з якої прийшов з юзера або з find pet*/}
-          <AddPetBtnCancel
-            type="button"
-            onClick={backStep}
-          >
-            {/* <Link to={backPage}> */}
+          <AddPetBtnCancel type="button" onClick={backStep}>
             <AddPetBtnCancelDiv>
               <ArrowLeft width="24" height="24" />
               Back
-              {/* {step === 1 ? 'Cancel' : 'Back'} */}
             </AddPetBtnCancelDiv>
           </AddPetBtnCancel>
         </AddPetBtnItem>

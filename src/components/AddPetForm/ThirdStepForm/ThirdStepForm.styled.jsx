@@ -3,22 +3,6 @@ import styled from 'styled-components';
 import { theme } from 'styles';
 import { visualyHidden } from 'utils/visualyHidden';
 
-//  ------- sex
-
-export const ThirdStepSexPhotoDiv = styled.div`
-  // display: flex;
-  // gap: 16px;
-  // font-size: 16px;
-  // line-height: 1.5; /* 24px */
-  // letter-spacing: 0.64px;
-
-  // @media screen and (min-width: ${theme.breakpoints.tablet}) {
-  //   flex-direction: column;
-  //   // height: 182px;
-  //   // margin-bottom: 16px;
-  // }
-`;
-
 // ------- form
 
 export const ThirdStepFormDiv = styled.div`
@@ -38,24 +22,19 @@ export const ThirdStepFormTitleContainer = styled.div`
 `;
 
 export const ThirdStepFormTitle = styled.label`
-position: relative;
-  color: ${theme.colors.black}; // #111111
-  font-family: ${theme.fonts.main.medium}; // Manrope 500
-  font-weight: 500;
-  font-size: ${theme.fontSizes.s}; //14px;
-  font-style: normal;
-  line-height: normal;
-
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 4px;
 
-  // margin-bottom: 20px;
+  color: ${theme.colors.black};
+  font-family: ${theme.fonts.main.medium};
+  font-weight: 500;
+  font-size: ${theme.fontSizes.s};
+  line-height: normal;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    font-family: Manrope;
     font-size: 20px;
-    font-weight: 500;
     line-height: 26.5px;
   }
 `;
@@ -63,7 +42,7 @@ position: relative;
 // ------- photo
 
 export const ThirdStepFormPhotoTitle = styled.label`
-position: relative;
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -78,17 +57,16 @@ position: relative;
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     gap: 8px;
     font-size: 20px;
-    line-height: 1.3;
   }
 `;
+
 export const ThirdStepFormPhotoDiv = styled.div`
-  color: ${theme.colors.black}; // #111111
-  font-family: ${theme.fonts.main.medium}; // Manrope 500
-  font-weight: 500;
-  font-size: ${theme.fontSizes.s}; //14px;
-  font-style: normal;
-  line-height: normal;
   width: 81px;
+  font-family: ${theme.fonts.main.medium};
+  font-weight: 500;
+  font-size: ${theme.fontSizes.s};
+  line-height: normal;
+  color: ${theme.colors.black};
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     font-size: 20px;
@@ -99,15 +77,13 @@ export const ThirdStepFormImgInput = styled(Field)`
   ${visualyHidden}
 `;
 
-
 export const ThirdStepFormPlus = styled.div`
-/* position: relative; */
-  cursor: pointer;
+  width: 112px;
+  height: 112px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 112px;
-  height: 112px;
+  cursor: pointer;
 
   background-color: ${theme.colors.blueLight};
   border-radius: 20px;
@@ -144,22 +120,22 @@ export const ThirdStepFormPlus = styled.div`
 export const ThirdStepFormImgPreview = styled.img`
   // opacity: 0;
 `;
+
 // ------ comments
 
 export const ThirdStepFormComments = styled.textarea`
-  //Field
-  font-family: Manrope;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.5; /* 24px */
-  letter-spacing: 0.64px;
-  color: ${theme.colors.grey};
-  text-overflow: ellipsis;
-
   min-height: 92px;
   padding: 8px 16px;
   border-radius: 20px;
   border: 1px solid ${theme.colors.blue};
+
+  font-family: Manrope;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.64px;
+  color: ${theme.colors.grey};
+  text-overflow: ellipsis;
 
   &:hover,
   &focus,

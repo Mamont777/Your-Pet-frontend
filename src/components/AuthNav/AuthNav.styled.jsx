@@ -5,11 +5,10 @@ import { theme } from 'styles';
 export const Auth = styled.div`
   @media (min-width: 768px) {
     display: flex;
-    // margin-right: 24px;
   }
 
   @media screen and (min-width: 1279px) {
-    /* margin-right: 18px; */
+    margin-left: 270px;
   }
 `;
 
@@ -18,8 +17,10 @@ export const LinkRegister = styled(NavLink)`
   justify-content: center;
   align-items: center;
   font-family: ${theme.fonts.main.semiBold};
-  width: 165px;
+  width: 142px;
   height: 40px;
+  margin-left: auto;
+  margin-right: auto;
   color: ${theme.colors.yellow};
   border: solid 2px ${theme.colors.yellow};
   border-radius: 40px;
@@ -27,7 +28,6 @@ export const LinkRegister = styled(NavLink)`
   cursor: pointer;
   transition: ${theme.transition};
   &:hover {
-    /* transform: scale(1.05); */
     transition: all ${theme.transition.main};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
@@ -39,17 +39,20 @@ export const LinkRegister = styled(NavLink)`
   }
 
   @media (min-width: 768px) {
+    margin: 0;
   }
 `;
 
 export const LinkLogin = styled(NavLink)`
+  width: 165px;
+  height: 40px;
+  margin-bottom: 12px;
   display: flex;
   justify-content: center;
   align-items: center;
+
+  letter-spacing: 0.64px;
   font-family: ${theme.fonts.main.semiBold};
-  width: 165px;
-  height: 40px;
-  margin-bottom: 15px;
   color: ${theme.colors.yellow};
   border: solid 2px ${theme.colors.yellow};
   border-radius: 40px;
@@ -59,10 +62,8 @@ export const LinkLogin = styled(NavLink)`
   svg {
     fill: ${theme.colors.yellow};
     margin-left: 8px;
-    margin-bottom: 2px;
   }
   &:hover {
-    /* transform: scale(1.05); */
     transition: all ${theme.transition.main};
     color: ${theme.colors.white};
     background-color: ${theme.colors.yellow};
