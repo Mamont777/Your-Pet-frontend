@@ -14,18 +14,16 @@ export const NavMenu = styled.ul.withConfig({
   @media screen and (max-width: 767px) {
     padding: 40px 70px 219px 70px;
     top: 50px;
-    height: 100%;
   }
 
   @media screen and (min-width: 768px) and (max-width: 1279px) {
     top: 70px;
     padding: 94px 0 700px 0;
-    height: 100%;
   }
 
   @media screen and (max-width: 1279px) {
     width: 100%;
-    heigh: 100vh;
+    height: 100%;
     position: absolute;
     left: 0;
     flex-direction: column-reverse;
@@ -42,7 +40,6 @@ export const NavMenu = styled.ul.withConfig({
 `;
 
 export const NavMenuItem = styled.li`
-  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;

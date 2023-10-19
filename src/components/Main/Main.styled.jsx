@@ -24,13 +24,14 @@ import catdesktop1x from '../../images/MainPage/desktop/catdesktop1x.webp';
 import catdesktop2x from '../../images/MainPage/desktop/catdesktop2x.webp';
 
 export const Container = styled.div`
-  padding-top: 60px;
+  max-width: 480px;
+  min-height: 100vh;
   display: flex;
+
+  padding-top: 60px;
   margin-left: auto;
   margin-right: auto;
 
-  max-width: 480px;
-  min-height: 100vh;
   @media screen and (max-width: 767px) {
     flex-direction: column;
   }
@@ -47,20 +48,23 @@ export const Container = styled.div`
   }
 `;
 export const ImagesContainer = styled.div`
-  position: relative;
-  overflow: visible;
   max-width: 480px;
   height: 390px;
+  position: relative;
+  overflow: visible;
+
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     max-width: 768px;
     height: 820px;
   }
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 1280px;
     height: 570px;
     top: 180px;
   }
 `;
+
 export const ImgBuldog = styled.img`
   position: absolute;
   width: 183px;
@@ -68,38 +72,42 @@ export const ImgBuldog = styled.img`
   right: 185px;
   bottom: 55px;
   content: url('${buldogmobile1x}');
+
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     content: url('${buldogmobile2x}');
   }
+
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 380px;
     bottom: 112px;
     right: 410px;
+    padding-top: 80px;
     content: url('${buldogtablet1x}');
+
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
       content: url('${buldogtablet2x}');
     }
-
-    padding-top: 80px;
   }
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 380px;
     bottom: 230px;
     right: 540px;
+    padding-top: 188px;
     content: url('${buldogdesktop1x}');
+
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
       content: url('${buldogdesktop2x}');
     }
-
-    padding-top: 188px;
   }
 `;
+
 export const ImgDog = styled.img`
   position: absolute;
   width: 235px;
@@ -108,27 +116,32 @@ export const ImgDog = styled.img`
   bottom: 125px;
   z-index: 1;
   content: url('${dogmobile1x}');
+
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     content: url('${dogmobile2x}');
   }
+
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 480px;
     bottom: 290px;
     right: -84px;
     content: url('${dogstablet1x}');
+
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
       content: url('${dogstablet2x}');
     }
   }
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 490px;
     bottom: 380px;
     right: 30px;
     content: url('${dogdesktop1x}');
+
     @media (min-device-pixel-ratio: 2),
       (min-resolution: 192dpi),
       (min-resolution: 2dppx) {
@@ -136,6 +149,7 @@ export const ImgDog = styled.img`
     }
   }
 `;
+
 export const ImgCat = styled.img`
   position: absolute;
   width: 165px;
@@ -143,11 +157,13 @@ export const ImgCat = styled.img`
   right: -20px;
   bottom: -5px;
   content: url('${catmobile1x}');
+
   @media (min-device-pixel-ratio: 2),
     (min-resolution: 192dpi),
     (min-resolution: 2dppx) {
     content: url('${catmobile2x}');
   }
+
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 332px;
     bottom: 22px;
@@ -173,23 +189,25 @@ export const ImgCat = styled.img`
 `;
 
 export const Title = styled.h1`
+  max-width: 280px;
+  height: 88px;
+
   font-size: 32px;
   font-family: ${theme.fonts.main.bold};
   font-weight: 700;
   color: #000000;
-  max-width: 280px;
-  height: 88px;
+
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     max-width: 588px;
     height: 200px;
-    padding-left: 20px;
-    width: 588px;
     font-size: 68px;
     font-weight: 600;
   }
+
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     max-width: 501px;
     height: 264px;
+
     font-size: 68px;
     font-weight: 800;
     line-height: 130%;

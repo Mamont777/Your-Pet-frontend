@@ -12,22 +12,19 @@ import 'react-toastify/dist/ReactToastify.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { App } from 'components/App';
 import './index.css';
-import { StyleSheetManager } from 'styled-components';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   //   <React.StrictMode>
-  <StyleSheetManager shouldForwardProp={prop => prop !== 'component'}>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <BrowserRouter basename="/YourPet">
-          <ThemeProvider theme={theme}>
-            <Global styles={GlobalStyles} />
-            <App />
-          </ThemeProvider>
-        </BrowserRouter>
-        <ToastContainer position="bottom-right" />
-      </PersistGate>
-    </Provider>
-  </StyleSheetManager>
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter basename="/YourPet">
+        <ThemeProvider theme={theme}>
+          <Global styles={GlobalStyles} />
+          <App />
+        </ThemeProvider>
+      </BrowserRouter>
+      <ToastContainer position="bottom-right" />
+    </PersistGate>
+  </Provider>
   //    </React.StrictMode>
 );

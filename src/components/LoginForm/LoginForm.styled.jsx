@@ -17,14 +17,13 @@ export const MainLogForm = styled.div`
   height: 425px;
   box-shadow: 7px 10px 14px rgba(63, 143, 248, 0.11);
   z-index: 0;
-  @media (min-width: 768px) {
+  @media (min-width: ${theme.breakpoints.tablet}) {
     padding: 60px 75px;
     width: 608px;
     height: 481px;
     border-radius: 40px;
-    /* z-index: 99; */
   }
-  @media screen and (min-width: 1281px) {
+  @media screen and (min-width: ${theme.breakpoints.desktop}) {
     height: 481px;
   }
 `;
@@ -33,11 +32,9 @@ export const Titel = styled.h1`
   font-size: ${theme.fontSizes.xl};
   font-family: ${theme.fonts.main.medium};
   margin-bottom: 20px;
-  @media (min-width: 768px) {
+  @media (min-width: ${theme.breakpoints.tablet}) {
     font-size: ${theme.fontSizes.xxl};
     margin-bottom: 40px;
-  }
-  @media screen and (min-width: 1281px) {
   }
 `;
 
@@ -71,20 +68,22 @@ export const InputForm = styled(Field)`
   font-family: ${theme.fonts.main.regular};
   border: none;
   border-radius: 40px;
-  @media (min-width: 768px) {
-    font-size: ${theme.fontSizes.m};
-  }
-  @media screen and (min-width: 1281px) {
-  }
+  letter-spacing: 0.64px;
 `;
 
 export const ErrorMess = styled(ErrorMessage)`
   position: absolute;
-  font-size: 10px;
   color: ${theme.colors.red};
-  left: 10px;
-  top: 47px;
-  @media (min-width: 768px) {
+
+  @media (max-width: 767px) {
+    top: 50px;
+    left: 17px;
+    font-size: 10px;
+  }
+
+  @media (min-width: ${theme.breakpoints.tablet}) {
+    top: 52px;
+    left: 15px;
     font-size: 12px;
   }
 `;
@@ -95,7 +94,7 @@ export const SuccessMessage = styled.p`
   color: ${theme.colors.green};
   left: 10px;
   top: 47px;
-  @media (min-width: 768px) {
+  @media (min-width: ${theme.breakpoints.tablet}) {
     font-size: 12px;
   }
 `;
@@ -107,9 +106,10 @@ export const IconWraper = styled.div`
   width: 54px;
   top: 12px;
   left: 187px;
-  @media (min-width: 768px) {
+
+  @media (min-width: ${theme.breakpoints.tablet}) {
     width: 60px;
-    top: 12px;
+    top: 10px;
     left: 383px;
   }
 `;
@@ -122,7 +122,7 @@ export const IconCheck = styled.span`
       stroke: ${theme.colors.green};
     }
   }
-  @media (min-width: 768px) {
+  @media (min-width: ${theme.breakpoints.tablet}) {
     top: 12px;
     left: 420px;
   }
@@ -136,7 +136,7 @@ export const IconCross = styled.span`
       stroke: ${theme.colors.red};
     }
   }
-  @media (min-width: 768px) {
+  @media (min-width: ${theme.breakpoints.tablet}) {
     top: 12px;
     left: 420px;
   }
@@ -144,7 +144,7 @@ export const IconCross = styled.span`
 
 export const OnIcon = styled(VisibilityIcon)`
   color: ${theme.colors.blue};
-  @media (min-width: 768px) {
+  @media (min-width: ${theme.breakpoints.tablet}) {
     top: 12px;
     left: 420px;
   }
@@ -152,7 +152,7 @@ export const OnIcon = styled(VisibilityIcon)`
 
 export const OffIcon = styled(VisibilityOffIcon)`
   color: ${theme.colors.blue};
-  @media (min-width: 768px) {
+  @media (min-width: ${theme.breakpoints.tablet}) {
     top: 12px;
     left: 420px;
   }
@@ -164,6 +164,8 @@ export const Button = styled.button`
   margin-top: 96px;
   margin-bottom: 8px;
   font-size: ${theme.fontSizes.l};
+  font-weight: 600;
+  letter-spacing: 0.8px;
   color: ${theme.colors.white};
   border-radius: 40px;
   background-color: ${theme.colors.blue};
@@ -172,12 +174,10 @@ export const Button = styled.button`
   &:hover {
     background-color: rgb(121, 189, 253);
   }
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     margin-top: 28px;
     margin-bottom: 20px;
     font-family: ${theme.fonts.main.semiBold};
-  }
-  @media screen and (min-width: 1281px) {
   }
 `;
 
@@ -185,12 +185,13 @@ export const ToRegister = styled.p`
   color: ${theme.colors.grey};
   font-size: ${theme.fontSizes.xs};
   font-family: ${theme.fonts.main.regular};
+  letter-spacing: 0.48px;
 `;
 
 export const LinkStyled = styled(NavLink)`
   color: ${theme.colors.blue};
   font-size: ${theme.fontSizes.xs};
   font-family: ${theme.fonts.main.regular};
-  margin-left: 4px;
+  margin-left: 3px;
   text-decoration: underline;
 `;

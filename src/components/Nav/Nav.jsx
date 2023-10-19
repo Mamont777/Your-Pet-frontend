@@ -6,28 +6,22 @@ import {
   UserNavContainerMobile,
   AuthContainerMobile,
   LogoutButtnMobile,
-  
 } from './Nav.styled';
 import { UserNav } from 'components/UserNav/UserNav';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import { useSelector } from 'react-redux';
-import {  selectIsLoggedIn } from 'redux/auth/auth-selectors';
+import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import { LogoutLink } from './LogoutLink/LogoutLink';
 
 export const Nav = ({ click, onClick }) => {
-    const isLoggedIn = useSelector(selectIsLoggedIn);
-    
+  const isLoggedIn = useSelector(selectIsLoggedIn);
 
   return (
     <NavMenu click={click}>
       {isLoggedIn && (
         <LogoutButtnMobile onClick={onClick}>
-                  <LogoutLink/>
+          <LogoutLink />
         </LogoutButtnMobile>
-                  
-      
-          
-        
       )}
 
       <NavMenuItem onClick={onClick}>
@@ -45,7 +39,6 @@ export const Nav = ({ click, onClick }) => {
       <>
         {isLoggedIn ? (
           <UserNavContainerMobile onClick={onClick}>
-                      
             <UserNav />
           </UserNavContainerMobile>
         ) : (
@@ -54,7 +47,6 @@ export const Nav = ({ click, onClick }) => {
           </AuthContainerMobile>
         )}
       </>
-
     </NavMenu>
   );
 };

@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 import {
-  CrossButton,
   HeaderContainer,
   HeaderMenu,
   HeaderWrapper,
   IconOpenMenu,
-  MenuButton,
   UserNavBox,
 } from './Header.styled';
 import Logo from 'components/Logo/Logo';
-import { Cross, MenuHamburger } from 'components/icons';
 import { Nav } from 'components/Nav/Nav';
 import { useSelector } from 'react-redux';
 import {
@@ -21,18 +18,18 @@ import { UserNav } from 'components/UserNav/UserNav';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import { useWindowSize } from './useWindowSize';
 import { LogoutLink } from 'components/Nav/LogoutLink/LogoutLink';
+import BurgerMenu from 'components/BurgerMenu/BurgerMenu';
 
 export const Header = () => {
-  const isRegistered = useSelector(selectIsRegistered)
+  const isRegistered = useSelector(selectIsRegistered);
   const isLoggedIn = useSelector(selectIsLoggedIn);
   const isRefreshing = useSelector(selectIsRefreshing);
   const [click, setClick] = useState(false);
   const [screenWidth] = useWindowSize();
-  const auth = isRegistered || isLoggedIn
+  const auth = isRegistered || isLoggedIn;
+  const [isOpen, setIsOpen] = useState(false);
 
-  const changeClick = () => {
-    setClick(!click);
-  };
+  const changeClick = () => setClick(prevClick => !prevClick);
 
   return (
     <HeaderContainer>
@@ -49,22 +46,15 @@ export const Header = () => {
               <UserNav />
             </UserNavBox>
           )}
-          {screenWidth >= 768 && !auth && !isRefreshing && <AuthNav onClick={() => changeClick()} />}
+          {screenWidth >= 768 && !auth && !isRefreshing && (
+            <AuthNav onClick={() => changeClick()} />
+          )}
 
           {screenWidth <= 1279 && (
             <IconOpenMenu onClick={() => changeClick()}>
-              {click ? (
-                <CrossButton>
-                  <Cross />
-                </CrossButton>
-              ) : (
-                <MenuButton>
-                  <MenuHamburger />
-                </MenuButton>
-              )}
+              <BurgerMenu isOpen={isOpen} setIsOpen={setIsOpen} />
             </IconOpenMenu>
           )}
-
           <Nav
             click={click}
             onClick={() => changeClick()}

@@ -20,7 +20,6 @@ const numberOfDay = dayNow.getDay();
 const FriendsItem = ({ friends }) => {
   const { imageUrl, title, url, addressUrl, email, phone, workDays, address } =
     friends;
-  console.table(friends);
 
   const [isVisible, setIsVisible] = useState(true);
 
@@ -33,7 +32,7 @@ const FriendsItem = ({ friends }) => {
 
   return (
     <Item>
-      <Title href={url && url} target="_blank" rel="noreferrer noopen nofollow">
+      <Title href={url} target="_blank" rel="noreferrer noopen nofollow">
         {title}
       </Title>
 
