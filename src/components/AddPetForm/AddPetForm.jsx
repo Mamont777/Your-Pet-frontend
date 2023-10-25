@@ -17,7 +17,7 @@ import ThirdStepFormExpanded from './ThirdStepFormExpanded/ThirdStepFormExpanded
 import ThirdStepForm from './ThirdStepForm/ThirdStepForm';
 import { selectIsLoading } from 'redux/auth/auth-selectors';
 import { selectNoticesIsLoading } from 'redux/notices/notices-selectors';
-import { ModalAddPet } from 'components/Modals';
+import { ModalAddPet } from '../Modals';
 import { addPet } from 'redux/pets/pets-operations';
 
 const AddPetForm = () => {
@@ -48,6 +48,7 @@ const AddPetForm = () => {
   const toggleModal = () => {
     setIsModalOpen(prevState => !prevState);
   };
+
   const handleNextClick = e => {
     setStep(prevState => prevState + 1);
   };
@@ -90,7 +91,6 @@ const AddPetForm = () => {
     for (let key in pets) {
       formData.append(key, pets[key]);
     }
-
     dispatch(addNotice(formData));
     toggleModal();
 
@@ -106,6 +106,7 @@ const AddPetForm = () => {
         break;
       case 'pet':
         dispatch(addPet(formData));
+        toggleModal();
         navigate('/user');
         break;
       default:

@@ -6,8 +6,6 @@ import { ModalApproveAction } from 'components/Modals';
 export const LogoutLink = () => {
   const [modalApproveActionShow, setModalApproveActionShow] = useState(false);
 
-  // const dispatch = useDispatch();
-
   const goOut = () => {
     setModalApproveActionShow(prevState => !prevState);
   };

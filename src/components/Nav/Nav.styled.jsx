@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { theme } from '../../styles/theme';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 export const NavMenu = styled.ul.withConfig({
   shouldForwardProp: prop => prop !== 'click',
@@ -36,6 +36,7 @@ export const NavMenu = styled.ul.withConfig({
 
   @media screen and (min-width: 1280px) {
     flex-direction: row-reverse;
+    height: 100%;
   }
 `;
 
@@ -49,7 +50,7 @@ export const NavMenuItem = styled.li`
 
     &:not(:first-child) {
       height: 66px;
-      margin-bottom: 60px;
+      margin-bottom: 40px;
     }
   }
 
@@ -66,7 +67,7 @@ export const NavMenuItem = styled.li`
   }
 `;
 
-export const NavMenuItemLink = styled(Link)`
+export const NavMenuItemLink = styled(NavLink)`
   color: ${theme.colors.black};
   font-size: ${theme.fontSizes.l};
   text-decoration: none;
@@ -83,16 +84,21 @@ export const NavMenuItemLink = styled(Link)`
   :focus {
     color: ${theme.colors.yellow};
   }
+
+  &.active {
+    color: ${theme.colors.yellow};
+    font-family: ${theme.fonts.main.bold};
+  }
 `;
 
 export const AuthContainerMobile = styled.div`
-  @media screen and (min-width: 768px) {
-    display: none;
-  }
-
   @media screen and (max-width: 767px) {
     margin-bottom: 40px;
     display: visible;
+  }
+
+  @media screen and (min-width: 768px) {
+    display: none;
   }
 `;
 
@@ -114,7 +120,7 @@ export const LogoutButtnMobile = styled.div`
   }
   @media screen and (max-width: 767px) {
     display: visible;
-    top: 499px;
+    top: 400px;
     left: 10%;
   }
 `;

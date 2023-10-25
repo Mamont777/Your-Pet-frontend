@@ -6,7 +6,7 @@ import { ContainerScroll } from './ScrollToTopButton.styled';
 export const ScrollToTopButton = () => {
   return (
     <>
-      <ScrollToTop showUnder={160} duration={200}>
+      <ScrollToTop showUnder={160} duration={100}>
         <ContainerScroll>
           <ArrowLeft />
         </ContainerScroll>

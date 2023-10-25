@@ -14,7 +14,6 @@ export const ModalContainer = styled(Modal)`
 
   .modal-dialog {
     margin: auto;
-
     max-width: calc(100% - 40px);
 
     @media screen and (min-width: ${theme.breakpoints.tablet}) {
@@ -27,7 +26,6 @@ export const ModalContainer = styled(Modal)`
     padding: 0;
     display: flex;
     flex-direction: column;
-
     align-items: center;
   }
 `;
@@ -45,7 +43,6 @@ export const CrossBtn = styled.button`
 
 export const Title = styled.h2`
   margin-top: 60px;
-
   text-align: center;
   font-size: 24px;
   line-height: normal;
@@ -62,19 +59,15 @@ export const InfoMessage = styled.p`
   text-align: center;
   font-size: 14px;
   padding: 0 20px;
-
   line-height: 18px;
   letter-spacing: 0.56px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
-    padding: 0 40px;
-
-    font-family: ${theme.fonts.main.medium};
-
     margin-top: 40px;
+    padding: 0 40px;
+    font-family: ${theme.fonts.main.medium};
     font-size: 20px;
     line-height: 28px;
-
     letter-spacing: 0.8px;
   }
 `;
@@ -93,11 +86,10 @@ export const BtnWrapper = styled.div`
 `;
 
 export const BtnLogin = styled(Link)`
-  display: flex;
-
   width: 240px;
   height: 40px;
   padding: 8px 0;
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
@@ -132,11 +124,10 @@ export const BtnLogin = styled(Link)`
 `;
 
 export const BtnLogout = styled(Link)`
-  display: flex;
-
   width: 240px;
   height: 40px;
   padding: 8px 0;
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;

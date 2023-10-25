@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   NavMenu,
   NavMenuItemLink,
@@ -15,6 +15,7 @@ import { LogoutLink } from './LogoutLink/LogoutLink';
 
 export const Nav = ({ click, onClick }) => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const [activeItem] = useState(null);
 
   return (
     <NavMenu click={click}>
@@ -25,15 +26,30 @@ export const Nav = ({ click, onClick }) => {
       )}
 
       <NavMenuItem onClick={onClick}>
-        <NavMenuItemLink to="/friends">Our friends</NavMenuItemLink>
+        <NavMenuItemLink
+          to="/friends"
+          className={activeItem === '/friends' ? 'active' : ''}
+        >
+          Our friends
+        </NavMenuItemLink>
       </NavMenuItem>
 
       <NavMenuItem onClick={onClick}>
-        <NavMenuItemLink to="/notices/sell">Find pet</NavMenuItemLink>
+        <NavMenuItemLink
+          to="/notices/sell"
+          className={activeItem === '/notices/sell' ? 'active' : ''}
+        >
+          Find pet
+        </NavMenuItemLink>
       </NavMenuItem>
 
       <NavMenuItem onClick={onClick}>
-        <NavMenuItemLink to="/news">News</NavMenuItemLink>
+        <NavMenuItemLink
+          to="/news"
+          className={activeItem === '/news' ? 'active' : ''}
+        >
+          News
+        </NavMenuItemLink>
       </NavMenuItem>
 
       <>

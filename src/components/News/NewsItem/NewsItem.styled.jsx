@@ -29,6 +29,7 @@ export const NewsItemContainer = styled.li`
     background: linear-gradient(290.46deg, #419ef1 0%, #9bd0ff 107.89%);
     border-radius: 40px;
     opacity: 1;
+    cursor: pointer;
   }
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
@@ -44,8 +45,6 @@ export const NewsItemContainer = styled.li`
     height: 534px;
     width: 395px;
   }
-
-  cursor: pointer;
 `;
 
 export const ImageWrapper = styled.div`

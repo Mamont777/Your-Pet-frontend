@@ -3,16 +3,16 @@ import { theme } from '../../../styles/theme';
 import { Link } from 'react-router-dom';
 
 export const LogOut = styled(Link)`
-  text-decoration: none;
+  width: 135px;
+  padding: 8px 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: ${theme.spacing.step * 1}px;
+  text-decoration: none;
   color: ${theme.colors.white};
   font-weight: 700;
-  width: 135px;
 
-  padding: 8px 20px;
   font-size: ${theme.fontSizes.m};
   line-height: normal;
   letter-spacing: 0.64px;
@@ -34,11 +34,10 @@ export const LogOut = styled(Link)`
     }
   }
 
-  @media screen and (min-width: ${theme.breakpoints.mobile}){
+  @media screen and (min-width: ${theme.breakpoints.mobile}) {
     margin-right: 24px;
   }
 `;
-
 
 export const Text = styled.p`
   color: ${theme.colors.white};

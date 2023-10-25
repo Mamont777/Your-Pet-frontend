@@ -13,7 +13,6 @@ export const ModalContainer = styled(Modal)`
 
   .modal-dialog {
     margin: auto;
-
     max-width: calc(100% - 40px);
 
     @media screen and (min-width: ${theme.breakpoints.tablet}) {
@@ -22,12 +21,11 @@ export const ModalContainer = styled(Modal)`
   }
 
   .modal-body {
-    font-family: ${theme.fonts.main.medium};
     padding: 0;
     display: flex;
     flex-direction: column;
-
     align-items: center;
+    font-family: ${theme.fonts.main.medium};
   }
 `;
 
@@ -70,11 +68,8 @@ export const InfoMessage = styled.p`
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     margin-top: 40px;
     padding: 0 105px;
-
     font-family: ${theme.fonts.main.medium};
-
     font-size: 16px;
-
     line-height: normal;
     letter-spacing: -0.16px;
   }
@@ -88,7 +83,6 @@ export const BtnWrapper = styled.div`
   margin-bottom: 60px;
 
   transition: all ${theme.transition.main};
-
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     flex-direction: row;
@@ -131,16 +125,15 @@ export const BtnCancel = styled.button`
 `;
 
 export const BtnYes = styled.button`
+  width: 256px;
+  height: 40px;
   display: flex;
+  justify-content: center;
+  align-items: center;
   gap: 8px;
 
   background: ${theme.colors.blue};
   border-radius: 40px;
-  width: 256px;
-  height: 40px;
-
-  justify-content: center;
-  align-items: center;
 
   color: ${theme.colors.white};
   font-family: ${theme.fonts.main.semiBold};

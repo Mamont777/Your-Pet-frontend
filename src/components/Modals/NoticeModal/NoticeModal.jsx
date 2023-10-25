@@ -31,12 +31,10 @@ import { Notify } from 'notiflix';
 import { selectUserCurrentFavoriteNoticesID } from 'redux/user/user-selectors';
 import { addUserCurrentFavorite } from 'redux/user/user-operations';
 import { ModalAttention } from '..';
-// import { useEffect } from 'react';
 
 export const NoticeModal = props => {
   const [showAttentionModal, setShowAttentionModal] = useState(false);
   const [favorite, setFavorite] = useState(false);
-
   const noticeById = useSelector(selectNoticeById);
   const isLoading = useSelector(selectNoticesIsLoading);
   const currentUser = useSelector(selectUser);
@@ -64,14 +62,6 @@ export const NoticeModal = props => {
   const category = noticeById['category'];
   const owner = noticeById['_owner'];
 
-  // const callFromModal = () => {
-  //   const phoneNumberFormatted = owner.phone.replace(/\D/g, '');
-  //   const telLink = `tel:${phoneNumberFormatted}`;
-
-  //   console.log('telLink:', telLink);
-  //   return telLink;
-  // };
-
   useEffect(() => {
     if (userFavoriteNoticesID.includes(_id)) {
       setFavorite(true);
@@ -81,7 +71,6 @@ export const NoticeModal = props => {
   const handleAddInFavorite = () => {
     if (currentUser.name === null && currentUser.email === null) {
       setShowAttentionModal(true);
-      // props.onHide();
     } else if (isLoggedIn && !favorite) {
       dispatch(addUserCurrentFavorite(_id));
       setFavorite(true);
@@ -162,7 +151,6 @@ export const NoticeModal = props => {
 
             <BtnWrapper>
               <BtnContact
-                // href={callFromModal()}
                 href={
                   owner.phone ? `tel:${owner.phone}` : `mailto:${owner.email}`
                 }

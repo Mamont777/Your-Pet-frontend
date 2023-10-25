@@ -2,7 +2,6 @@ import Modal from 'react-bootstrap/Modal';
 import {
   ButtonGoToProfile,
   CrossBtn,
-  // InfoMessage,
   ModalContainer,
   Title,
 } from './ModalAddPet.styled';
@@ -16,9 +15,6 @@ export const ModalAddPet = props => {
           <Cross />
         </CrossBtn>
         <Title>Congrats! Your pet was successfuly added!</Title>
-
-        {/* <InfoMessage>Your registration is successful</InfoMessage> */}
-
         <ButtonGoToProfile onClick={props.onHide}>
           <span>Go to profile</span>
           <span>

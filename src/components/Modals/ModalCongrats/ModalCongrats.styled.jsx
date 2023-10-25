@@ -13,7 +13,6 @@ export const ModalContainer = styled(Modal)`
 
   .modal-dialog {
     margin: auto;
-
     max-width: calc(100% - 40px);
 
     @media screen and (min-width: ${theme.breakpoints.tablet}) {
@@ -22,12 +21,11 @@ export const ModalContainer = styled(Modal)`
   }
 
   .modal-body {
-    font-family: ${theme.fonts.main.medium};
     padding: 0;
     display: flex;
     flex-direction: column;
-
     align-items: center;
+    font-family: ${theme.fonts.main.medium};
   }
 `;
 
@@ -44,7 +42,6 @@ export const CrossBtn = styled.button`
 
 export const Title = styled.h2`
   margin-top: 68px;
-
   text-align: center;
   font-size: 24px;
   line-height: normal;
@@ -72,15 +69,14 @@ export const InfoMessage = styled.p`
 `;
 
 export const ButtonGoToProfile = styled.button`
-  display: flex;
-  margin-top: 40px;
-  margin-bottom: 60px;
-
   width: 248px;
   height: 40px;
-  padding: 8px 28px;
+  display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 40px;
+  margin-bottom: 60px;
+  padding: 8px 28px;
   gap: 12px;
   border-radius: 40px;
   background: ${theme.colors.blue};

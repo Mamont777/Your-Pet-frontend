@@ -16,7 +16,6 @@ export const ModalContainer = styled(Modal)`
 
   .modal-dialog {
     margin: auto;
-
     max-width: calc(100% - 40px);
 
     @media screen and (min-width: ${theme.breakpoints.tablet}) {
@@ -25,16 +24,14 @@ export const ModalContainer = styled(Modal)`
   }
 
   .modal-body {
-    font-family: ${theme.fonts.main.medium};
     padding: 0;
     display: flex;
     flex-direction: column;
+    font-family: ${theme.fonts.main.medium};
 
     @media screen and (min-width: ${theme.breakpoints.tablet}) {
       padding: 32px 32px 24px;
     }
-
-    /* align-items: center; */
   }
 `;
 
@@ -50,10 +47,10 @@ export const CrossBtn = styled.button`
 `;
 
 export const FlexWrapper = styled.div`
+  margin-top: 44px;
   display: flex;
   gap: 12px;
   flex-direction: column;
-  margin-top: 44px;
 
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     flex-direction: row;
@@ -77,16 +74,16 @@ export const ImgBox = styled.div`
 `;
 
 export const CategoryName = styled.span`
-  position: absolute;
-  margin-top: 16px;
   width: 126px;
   height: 32px;
-  background-color: ${theme.colors.blueLight};
-  border-radius: 0 20px 20px 0;
+  position: absolute;
+  margin-top: 16px;
   display: flex;
   align-items: center;
   justify-content: center;
-  // padding-left: 12px;
+
+  background-color: ${theme.colors.blueLight};
+  border-radius: 0 20px 20px 0;
 
   font-size: 14px;
   font-family: ${theme.fonts.main.medium};
@@ -110,7 +107,6 @@ export const Title = styled.h2`
   @media screen and (min-width: ${theme.breakpoints.tablet}) {
     width: 250px;
     font-size: 28px;
-
     line-height: normal;
     letter-spacing: -0.28px;
   }
@@ -186,7 +182,7 @@ export const InfoMessage = styled.p`
     font-family: ${theme.fonts.main.medium};
     font-size: 16px;
     line-height: 28px;
-    line-height: 24px; /* 150% */
+    line-height: 24px;
     letter-spacing: 0.64px;
   }
 `;
@@ -207,14 +203,15 @@ export const BtnWrapper = styled.div`
 `;
 
 export const BtnContact = styled.a`
-  display: flex;
-
   width: 256px;
   height: 40px;
   padding: 8px 0;
+
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
+
   border: 2px solid ${theme.colors.blue};
   border-radius: 40px;
   background: ${theme.colors.white};
@@ -240,11 +237,11 @@ export const BtnContact = styled.a`
 `;
 
 export const BtnAddTo = styled.button`
-  display: flex;
-
   min-width: 256px;
   height: 40px;
   padding: 8px 20px;
+
+  display: flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
