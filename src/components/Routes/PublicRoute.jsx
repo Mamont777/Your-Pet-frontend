@@ -1,11 +1,16 @@
-import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
-import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
+import { useAuth } from 'hooks/useAuth';
+import Loader from 'components/Loader/Loader';
 
 const PublicRoute = ({ children }) => {
-  const isLoggedIn = useSelector(selectIsLoggedIn);
+  const { isLoggedIn, isLoading } = useAuth();
   const { state } = useLocation();
-  return !isLoggedIn ? children : <Navigate to={state ? state : '/user'} />;
+  return (
+    <>
+      {isLoading && <Loader />}
+      {!isLoggedIn ? children : <Navigate to={state ? state : '/user'} />}
+    </>
+  );
 };
 
 export default PublicRoute;

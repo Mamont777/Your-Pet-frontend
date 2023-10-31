@@ -47,12 +47,6 @@ const InfoContainer = styled.div`
   flex-direction: row-reverse;
   justify-content: space-between;
   align-items: flex-start;
-  // @media screen and (min-width: 768px) {
-  //   width: 515px;
-  // }
-  // @media screen and (min-width: 1200px) {
-  //   width: 580px;
-  // }
 `;
 
 const DeleteBtn = styled.button`

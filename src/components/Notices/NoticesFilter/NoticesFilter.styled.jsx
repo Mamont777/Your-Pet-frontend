@@ -29,7 +29,7 @@ export const FilterBtn = styled.button`
     stroke: ${theme.colors.white};
   }
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: ${theme.breakpoints.tablet}) {
     gap: 8px;
     min-width: 152px;
 

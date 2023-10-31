@@ -23,7 +23,7 @@ export default function NewsPage() {
   };
 
   useEffect(() => {
-    dispatch(getAllNews({ page: currentPage, limit: 15 }));
+    dispatch(getAllNews({ page: currentPage, limit: 9 }));
   }, [dispatch, currentPage]);
   return (
     <>

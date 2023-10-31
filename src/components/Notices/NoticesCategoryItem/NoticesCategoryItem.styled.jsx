@@ -27,13 +27,6 @@ export const Img = styled.img`
   object-fit: cover;
 
   cursor: pointer;
-  // @media screen and (min-width: 768px) {
-  //   width: 336px;
-  // }
-
-  // @media screen and (min-width: 1280px) {
-  //   width: 288px;
-  // }
 `;
 
 export const HeartBtn = styled.button`
@@ -88,6 +81,7 @@ export const DeleteNoticeBtn = styled.button`
     svg {
       stroke: ${theme.colors.white};
     }
+  }
 `;
 
 export const FilterStatus = styled.div`
@@ -118,11 +112,6 @@ export const ListPetInfo = styled.div`
   display: flex;
   justify-content: space-evenly;
   gap: 12px;
-
-  /* svg:focus,
-  svg:hover {
-    stroke: ${theme.colors.blue};
-  } */
 
   @media screen and (min-width: 768px) {
     gap: 24px;
@@ -237,7 +226,6 @@ export const TextItem = styled.h2`
   height: 106px;
   padding: 20px;
   font-size: ${theme.fontSizes.xl};
-  // min- width: 231px;
   font-weight: ${theme.fonts.main.bold};
 
   word-break: break-word;
@@ -288,5 +276,3 @@ export const LoadMoreBtn = styled.button`
     fill: ${theme.colors.white};
   }
 `;
-
-export const Box = styled.div``;

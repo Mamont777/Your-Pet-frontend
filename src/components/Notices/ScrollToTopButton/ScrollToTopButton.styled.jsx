@@ -32,7 +32,7 @@ export const ContainerScroll = styled.button`
   @media (min-width: ${theme.breakpoints.desktop}) {
     width: 50px;
     height: 50px;
-    right: 260px;
+    right: 210px;
     bottom: 10px;
   }
 `;

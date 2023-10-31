@@ -2,17 +2,11 @@ import { Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchCurrentUser, getUserProfile } from 'redux/auth/auth-operations';
-
-import // getUserCurrentFavorite,
-// getUserCurrentNotices,
-'redux/user/user-operations';
-
 import SharedLayout from './SharedLayout/SharedLayout';
 import { useAuth } from 'hooks/useAuth';
 import Main from './Main/Main';
 import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import AddPet from '../pages/AddPet/AddPet';
-
 import PublicRoute from './Routes/PublicRoute';
 import PrivateRoute from './Routes/PrivateRoute';
 import Loader from './Loader/Loader';
@@ -31,9 +25,9 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(fetchCurrentUser());
-    
-    if(isLoggedIn) {
-      dispatch(getUserProfile())
+
+    if (isLoggedIn) {
+      dispatch(getUserProfile());
     }
   }, [dispatch, isLoggedIn]);
 

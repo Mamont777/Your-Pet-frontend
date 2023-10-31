@@ -34,8 +34,8 @@ export const HeaderMenu = styled.div`
 
 export const UserNavBox = styled.div`
   display: flex;
-  justify-content: center;
-  align-item: center;
+  align-items: center;
+  margin-left: 305px;
 `;
 
 export const IconOpenMenu = styled.div`

@@ -54,8 +54,7 @@ const FileInputLabel = styled.label`
   gap: 8px;
   transition: all ${theme.transition.main};
   cursor: pointer;
-  svg {
-  }
+
   &:hover,
   &:focus {
     color: ${theme.colors.yellow};

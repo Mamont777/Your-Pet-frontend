@@ -15,9 +15,7 @@ export const Filter = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-
   margin-bottom: 24px;
-  // margin-top: 20px;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 40px;

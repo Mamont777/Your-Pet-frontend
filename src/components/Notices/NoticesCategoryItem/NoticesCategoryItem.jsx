@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Notify } from 'notiflix';
-// import PropTypes from 'prop-types';
 import { useDispatch, useSelector } from 'react-redux';
 import fotoAlternate from 'images/not-found.png';
 import {
@@ -55,19 +54,6 @@ export const NoticesCategoryItem = ({ notice }) => {
     }
   }, [notice._id, userFavoriteNoticesID]);
 
-  // useEffect(() => {
-  //   const newNotices = favoriteNotices => {
-  //     favoriteNotices.find(favoriteNotics => {
-  //       if (favoriteNotices._id === notice._id) {
-  //         setFavorite(true);
-  //       }
-  //     });
-  //   };
-  //   if (isLoggedIn) {
-  //     return newNotices;
-  //   }
-  // }, [isLoggedIn, notice._id]);
-
   const handleAddInFavorite = async () => {
     if (currentUser.name === null && currentUser.email === null) {
       setShowAttentionModal(true);
@@ -80,21 +66,9 @@ export const NoticesCategoryItem = ({ notice }) => {
       setFavorite(false);
       Notify.success('Deleted from favorites');
     } else if (categoryName === 'favorite') {
-      // dispatch(removeFromFavoriteCategory(notice._id));
       setFavorite(false);
     }
   };
-
-  // const handleAddInFavorite = async  => {
-  //   try {
-  //     if (!isLoggedIn) {
-  //       setShowAttentionModal(true);
-  //       return;
-  //     }
-  //   } catch (error) {
-  //     Notify.warning(error.message);
-  //   }
-  // };
 
   const handleDeleteOwnNotice = async () => {
     if (isLoggedIn && currentUser.email === notice._owner.email) {
@@ -144,10 +118,7 @@ export const NoticesCategoryItem = ({ notice }) => {
             <HeartBtn
               type="button"
               className={favorite ? 'heart favorite' : 'heart'}
-              onClick={
-                // () => setFavorite(!favorite)
-                handleAddInFavorite
-              }
+              onClick={handleAddInFavorite}
             >
               <Heart />
             </HeartBtn>
@@ -207,8 +178,4 @@ export const NoticesCategoryItem = ({ notice }) => {
       )}
     </>
   );
-};
-
-NoticesCategoryItem.propTypes = {
-  // notice: PropTypes.arrayOf,
 };

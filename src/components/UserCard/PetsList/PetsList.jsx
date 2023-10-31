@@ -10,7 +10,6 @@ const PetsList = () => {
   const [dataToUpdate, setData] = useState(data.pets);
 
   useEffect(() => {
-    // setDataUpdated(true);
     setData(data.pets);
   }, [data]);
 

@@ -23,7 +23,6 @@ const Title = styled.h2`
   color: ${theme.colors.black};
   font-family: ${theme.fonts.main.medium};
   font-size: ${theme.fontSizes.l};
-  font-style: normal;
   line-height: normal;
   letter-spacing: 0.8px;
   margin-bottom: 18px;
