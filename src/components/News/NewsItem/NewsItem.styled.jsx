@@ -111,6 +111,7 @@ export const NewsBody = styled.p`
 
   @media screen and (min-width: ${theme.breakpoints.desktop}) {
     width: 371px;
+    padding-top: 20px;
   }
 `;
 

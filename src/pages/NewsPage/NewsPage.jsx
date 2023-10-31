@@ -29,7 +29,6 @@ export default function NewsPage() {
     <>
       <Container>
         <Title>News</Title>
-        {/* <NewsSearch onSubmitNoticeForm={setSearch} /> */}
         <NewsSearch onSubmitNewsForm={setSearch} />
         <NewsList search={search} />
         <Pagination

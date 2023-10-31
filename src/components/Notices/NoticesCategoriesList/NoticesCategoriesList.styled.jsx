@@ -35,9 +35,11 @@ export const Text = styled.p`
   transform: translate(-50%, -50%);
   text-align: center;
 
-  color: ${theme.colors.black};
+  color: ${theme.colors.yellow};
   font-weight: 700;
   font-size: 24px;
+
+  opacity: 0.3;
 
   @media screen and (min-width: 768px) {
     font-size: 48px;

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectAllNotices } from 'redux/notices/notices-selectors';
 import { NoticesCategoryItem } from '../NoticesCategoryItem/NoticesCategoryItem';
-import { NoticeList, Text, TextBox } from './NoticesCategoriesList.styled';
+import { NoticeList, TextBox, Text } from './NoticesCategoriesList.styled';
 import { useParams } from 'react-router-dom';
 import {
   selectUserCurrentFavoriteNotices,
@@ -54,7 +54,7 @@ export const NoticesCategoriesList = () => {
         ))
       ) : (
         <TextBox>
-          <Text>Sorry, we can't find that</Text>
+          <Text>Nothing was found for your request. Try again</Text>
         </TextBox>
       )}
     </NoticeList>

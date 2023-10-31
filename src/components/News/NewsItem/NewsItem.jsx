@@ -27,7 +27,7 @@ export const NewsItem = ({ news }) => {
         </ImageWrapper>
         <TextContent>
           <NewsTitle href={url && url}>{title}</NewsTitle>
-          <NewsBody text={text} length={230} />
+          <NewsBody>{text}</NewsBody>
           <BottomInfoWrapper>
             <NewsDate>{formatDate(date)}</NewsDate>
             <NewsLink href={url} target="_blank" rel="noreferrer">

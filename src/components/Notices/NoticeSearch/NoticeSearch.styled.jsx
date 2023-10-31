@@ -59,7 +59,7 @@ export const Button = styled.button.withConfig({
 
   transform: ${({ search }) => search && 'translateX(-27px)'};
 
-  transition: all ${theme.transition.main};
+  transition: transform 300ms ${theme.transition.main};
 
   svg:hover,
   svg:focus {
@@ -68,6 +68,10 @@ export const Button = styled.button.withConfig({
 `;
 
 export const ClearBtn = styled(Button)`
+  right: 13px;
+  transform: translateX(0);
+  opacity: ${({ search }) => (search ? 1 : 0)};
+  transition: opacity 300ms ${theme.transition.main};
   svg {
     stroke: ${theme.colors.yellow};
   }

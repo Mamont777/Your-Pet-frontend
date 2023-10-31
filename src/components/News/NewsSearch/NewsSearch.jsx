@@ -1,14 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Cross, Search} from 'components/icons';
-import { Form, Input, Button, ClearBtn} from './NewsSearch.styled';
+import { Cross, Search } from 'components/icons';
+import { Form, Input, Button, ClearBtn } from './NewsSearch.styled';
 import { Notify } from 'notiflix';
 
-
-
-export const NewsSearch = ({onSubmitNewsForm}) => {
+export const NewsSearch = ({ onSubmitNewsForm }) => {
   const [search, setSearch] = useState('');
-
-
 
   useEffect(() => {
     if (!search) onSubmitNewsForm(search);
@@ -23,7 +19,7 @@ export const NewsSearch = ({onSubmitNewsForm}) => {
       Notify.warning('Please enter something');
       return;
     }
-  }
+  };
 
   const handleChange = e => {
     const searchQuery = e.target.value;
@@ -36,11 +32,6 @@ export const NewsSearch = ({onSubmitNewsForm}) => {
   const onClickClear = () => {
     setSearch('');
   };
-  // const changeFilterHandler = e =>
-  //   dispatch(changeFilter(e.currentTarget.value.toLowerCase().trim()));
-
-
-
 
   return (
     <Form onSubmit={handleSubmit}>

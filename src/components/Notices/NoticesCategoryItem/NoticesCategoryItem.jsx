@@ -36,7 +36,6 @@ import { selectUserCurrentFavoriteNoticesID } from 'redux/user/user-selectors';
 import { deleteUserCurrentNotices } from 'redux/user/user-operations.js';
 
 export const NoticesCategoryItem = ({ notice }) => {
-  // console.log('notice:', notice);
   const dispatch = useDispatch();
   const [favorite, setFavorite] = useState(false);
   const [showAttentionModal, setShowAttentionModal] = useState(false);
@@ -49,7 +48,6 @@ export const NoticesCategoryItem = ({ notice }) => {
   const { categoryName } = useParams();
   const currentUser = useSelector(selectUser);
   const userFavoriteNoticesID = useSelector(selectUserCurrentFavoriteNoticesID);
-  // console.log(currentUser);
 
   useEffect(() => {
     if (userFavoriteNoticesID.includes(notice._id)) {

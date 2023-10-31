@@ -1,14 +1,11 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useWindowSize } from 'hooks/useWindowSize';
 import { PlusSmall, Plus } from 'components/icons';
-// import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import { Btn } from './AddPetButton.styled';
-// import { useSelector } from 'react-redux';
-
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/auth-selectors';
 import { ModalAttention } from 'components/Modals';
-import { useLocation } from 'react-router-dom';
 
 export const AddPetButton = () => {
   const screenWidth = useWindowSize();
