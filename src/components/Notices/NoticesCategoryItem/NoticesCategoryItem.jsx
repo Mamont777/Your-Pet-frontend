@@ -29,10 +29,12 @@ import { converterAge } from 'utils/converterAge';
 import { ModalDelete, NoticeModal, ModalAttention } from 'components/Modals';
 import { useParams } from 'react-router-dom';
 import { selectIsLoggedIn, selectUser } from 'redux/auth/auth-selectors';
-import { getNoticeById } from 'redux/notices/notices-operations';
-import { addUserCurrentFavorite } from 'redux/user/user-operations';
-import { selectUserCurrentFavoriteNoticesID } from 'redux/user/user-selectors';
-import { deleteUserCurrentNotices } from 'redux/user/user-operations.js';
+import {
+  getNoticeById,
+  addUserCurrentFavorite,
+  deleteUserCurrentNotices,
+} from 'redux/notices/notices-operations';
+import { selectUserCurrentFavoriteNoticesID } from 'redux/notices/notices-selectors';
 
 export const NoticesCategoryItem = ({ notice }) => {
   const dispatch = useDispatch();
@@ -71,7 +73,7 @@ export const NoticesCategoryItem = ({ notice }) => {
   };
 
   const handleDeleteOwnNotice = async () => {
-    if (isLoggedIn && currentUser.email === notice._owner.email) {
+    if (isLoggedIn && currentUser.email === notice._owner?.email) {
       dispatch(deleteUserCurrentNotices(notice._id));
       Notify.success('Deleted your own notice');
     }
@@ -123,7 +125,7 @@ export const NoticesCategoryItem = ({ notice }) => {
               <Heart />
             </HeartBtn>
 
-            {currentUser.email === notice._owner.email && (
+            {currentUser.email === notice._owner?.email && (
               <DeleteNoticeBtn type="button" onClick={toggleModalDelete}>
                 <Trash />
               </DeleteNoticeBtn>

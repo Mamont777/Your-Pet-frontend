@@ -2,7 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-axios.defaults.baseURL = 'https://team-project-backend-881k.onrender.com';
+axios.defaults.baseURL = 'team-project-backend-881k.onrender.com';
 
 const token = {
   set(token) {
@@ -17,10 +17,8 @@ export const register = createAsyncThunk(
   'auth/register',
 
   async (credential, thunkAPI) => {
-    // console.log('credential:', credential);
     try {
       const { data } = await axios.post('/api/auth/register', credential);
-      // console.log('register:', data);
       token.set(data.user.token);
       return data;
     } catch (error) {
@@ -44,7 +42,6 @@ export const login = createAsyncThunk(
   async (credential, thunkAPI) => {
     try {
       const { data } = await axios.post('/api/auth/login', credential);
-      // console.log('login:', data);
 
       token.set(data.token);
       return data;
@@ -77,30 +74,15 @@ export const logOut = createAsyncThunk(
   }
 );
 
-export const fetchCurrentUser = createAsyncThunk(
-  'auth/refresh',
-  async (_, thunkAPI) => {
-    const state = thunkAPI.getState();
-    const persistedToken = state.auth.token;
-    // console.log('persistedToken:', persistedToken);
-    if (!persistedToken) {
-      return thunkAPI.rejectWithValue('Unable to fetch user');
-    }
-    try {
-      token.set(persistedToken);
-      const { data } = await axios.get('/api/users/current');
-
-      return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-
 export const getUserProfile = createAsyncThunk(
   'auth/user',
   async (_, thunkAPI) => {
+    const localToken = thunkAPI.getState().auth.token;
+    if (!localToken) {
+      return thunkAPI.rejectWithValue('Unable to fetch user profile');
+    }
     try {
+      token.set(localToken);
       const { data } = await axios.get('/api/users/profile');
 
       return data.data.userInfo;
@@ -120,7 +102,6 @@ export const updateUser = createAsyncThunk(
           'Content-Type': 'multipart/form-data',
         },
       });
-      //   token.set(data.token);
 
       return data;
     } catch (error) {

@@ -10,14 +10,14 @@ import { NoticesCategoriesNav } from 'components/Notices/NoticesCategoriesNav/No
 import { AddPetButton } from 'components/Notices/AddPetButton/AddPetButton';
 import { NoticesFilter } from 'components/Notices/NoticesFilter/NoticesFilter';
 import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
-import { fetchNotices } from 'redux/notices/notices-operations';
+import {
+  fetchNotices,
+  getUserCurrentFavorite,
+  getUserCurrentNotices,
+} from 'redux/notices/notices-operations';
 import Loader from 'components/Loader/Loader';
 import { Filter, Boxing } from './NoticesPage.styled';
 import { Container } from 'components/Notices/Container/Container.styled';
-import {
-  getUserCurrentFavorite,
-  getUserCurrentNotices,
-} from 'redux/user/user-operations';
 import { ScrollToTopButton } from 'components/Notices/ScrollToTopButton/ScrollToTopButton';
 
 function Notices() {

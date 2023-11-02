@@ -1,6 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import { theme } from 'styles';
 import {
   SecondStepFormDiv,
@@ -21,6 +20,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
   const [errors, setErrors] = useState({});
   const [isDisabled, setIsDisabled] = useState(false);
+  const [maxDate, setMaxDate] = useState();
 
   const isNameFieldValid = useMemo(
     () => !errors.name && !!data.name,
@@ -56,7 +56,7 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
         )
       );
     }
-    getCurrentDate();
+    setMaxDate(getCurrentDate());
   }, [
     errors,
     data.category,
@@ -67,7 +67,11 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
   ]);
 
   function getCurrentDate() {
-    return moment().format('DD.MM.YYYY');
+    return new Date().toLocaleDateString('uk-UA', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
   }
 
   const handleChange = ({ target }) => {
@@ -75,14 +79,17 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
 
     setErrors(prevState => ({ ...prevState, [name]: '' }));
 
-    const inputValue =
-      name === 'birthday'
-        ? new Date(value).toLocaleDateString('uk-UA', {
-            day: '2-digit',
-            month: '2-digit',
-            year: 'numeric',
-          })
-        : value;
+    let inputValue = value;
+
+    if (name === 'birthday') {
+      const parts = value.split('-');
+      if (parts.length === 3) {
+        const day = parts[0].trim();
+        const month = parts[1].trim();
+        const year = parts[2].trim();
+        inputValue = `${day}-${month}-${year}`;
+      }
+    }
 
     setData(prevState => ({
       ...prevState,
@@ -156,13 +163,13 @@ const SecondStepForm = ({ data, setData, nextStep, backStep }) => {
                     : `${theme.colors.green}`
                 }`,
               }}
-              type="date"
-              placeholder="Type date of birth in format DD.MM.YYYY"
+              type="text"
+              placeholder="Type date of birth in format DD-MM-YYYY"
               name="birthday"
-              data-pattern="**.**.****"
-              max={getCurrentDate()}
+              data-pattern="**-**-****"
+              max={maxDate}
               onChange={handleChange}
-              value={moment(data.birthday, 'DD.MM.YYYY').format('YYYY-MM-DD')}
+              value={data.birthday}
               onBlur={() => validateField('birthday', data, setErrors)}
               className={errors.birthday ? 'invalid' : ''}
             />

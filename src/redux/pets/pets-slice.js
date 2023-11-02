@@ -24,20 +24,20 @@ const petsSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchPets.fulfilled, (state, { payload }) => {
-        state.error = null;
         state.pets = payload;
-
+        state.error = null;
         state.isLoading = false;
       })
       .addCase(addPet.fulfilled, (state, { payload }) => {
-        state.error = null;
+        // state.pets = [...state.pets, payload];
         state.pets.push(payload);
+        state.error = null;
         state.isLoading = false;
       })
       .addCase(deletePet.fulfilled, (state, { payload }) => {
+        state.pets = state.pets.filter(pet => pet._id !== payload.id);
         state.error = null;
         state.isLoading = false;
-        state.pets = state.pets.filter(pet => pet._id !== payload.id);
       })
       .addCase(fetchPets.pending, handlePending)
       .addCase(addPet.pending, handlePending)

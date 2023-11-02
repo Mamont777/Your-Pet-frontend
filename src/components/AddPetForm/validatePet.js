@@ -15,8 +15,8 @@ export const validatePetSchema = Yup.object().shape({
   birthday: Yup.string()
     .required('Date is required')
     .matches(
-      /^(\d{2}).(\d{2}).(\d{4})$/,
-      'Invalid date format. Use DD.MM.YYYY'
+      /^(\d{2})-(\d{2})-(\d{4})$/,
+      'Invalid date format. Use DD-MM-YYYY'
     ),
   type: Yup.string()
     .required('Type is required')

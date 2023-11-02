@@ -1,9 +1,10 @@
 import { Route, Routes } from 'react-router-dom';
 import { lazy, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { fetchCurrentUser, getUserProfile } from 'redux/auth/auth-operations';
+import { getUserProfile } from 'redux/auth/auth-operations';
 import SharedLayout from './SharedLayout/SharedLayout';
 import { useAuth } from 'hooks/useAuth';
+
 import Main from './Main/Main';
 import NoticesPage from 'pages/NoticesPage/NoticesPage';
 import AddPet from '../pages/AddPet/AddPet';
@@ -21,19 +22,15 @@ const NewsPage = lazy(() => import('pages/NewsPage/NewsPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const { isRefreshing, isLoggedIn } = useAuth();
+  const { isLoading, isLoggedIn } = useAuth();
 
   useEffect(() => {
-    dispatch(fetchCurrentUser());
-
-    if (isLoggedIn) {
-      dispatch(getUserProfile());
-    }
+    dispatch(getUserProfile());
   }, [dispatch, isLoggedIn]);
 
   return (
     <>
-      {!isRefreshing ? (
+      {!isLoading ? (
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<Main />} />

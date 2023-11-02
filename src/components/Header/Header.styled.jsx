@@ -35,7 +35,7 @@ export const HeaderMenu = styled.div`
 export const UserNavBox = styled.div`
   display: flex;
   align-items: center;
-  margin-left: 305px;
+  margin-left: 300px;
 `;
 
 export const IconOpenMenu = styled.div`

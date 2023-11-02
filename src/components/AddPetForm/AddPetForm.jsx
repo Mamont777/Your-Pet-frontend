@@ -176,7 +176,7 @@ const AddPetForm = () => {
         )}
       </Formik>
       {isModalOpen && !isLoading && (
-        <ModalAddPet toggleModal={() => navigate(backPage)}></ModalAddPet>
+        <ModalAddPet show={isModalOpen} onHide={toggleModal} />
       )}
     </AddPetDiv>
   );

@@ -10,10 +10,7 @@ import {
 } from 'components/UserCard/UserData/UserData.styled';
 import PetsData from 'components/UserCard/PetsData/PetsData';
 import { PlusSmall } from 'components/icons';
-import {
-  selectIsRegistered,
-  // selectUser
-} from 'redux/auth/auth-selectors';
+import { selectIsRegistered } from 'redux/auth/auth-selectors';
 import { ModalCongrats } from 'components/Modals';
 import { fetchPets } from 'redux/pets/pets-operations';
 
@@ -22,8 +19,6 @@ const User = () => {
   const isRegistered = useSelector(selectIsRegistered);
   const location = useLocation();
   const dispatch = useDispatch();
-  // const user = useSelector(selectUser);
-  // console.log('user:', user);
 
   useEffect(() => {
     dispatch(fetchPets());
