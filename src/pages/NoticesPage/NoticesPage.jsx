@@ -19,7 +19,7 @@ import {
 import Loader from 'components/Loader/Loader';
 import { Filter, Boxing } from './NoticesPage.styled';
 import { Container } from 'components/Notices/Container/Container.styled';
-
+import { Slider } from 'components/Slider/Slider';
 
 function Notices() {
   const [search, setSearch] = useState('');
@@ -31,7 +31,6 @@ function Notices() {
   const { categoryName } = useParams();
   const [genderFilter, setGenderFilter] = useState('');
   const [ageFilter, setAgeFilter] = useState('');
-
 
   useEffect(() => {
     const applyFilters = () => {
@@ -90,6 +89,7 @@ function Notices() {
             chosenAgeFilter={ageFilter}
             chosenGenderFilter={genderFilter}
           />
+          <Slider />
         </Container>
       )}
     </>
