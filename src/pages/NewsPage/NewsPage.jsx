@@ -18,13 +18,18 @@ export default function NewsPage() {
   const totatalConunts = useSelector(selectTotalCount);
   const currentPage = new URLSearchParams(location.search).get('page') || 1;
 
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    queryParams.set('search', search);
+    dispatch(getAllNews({ page: currentPage, limit: 9, search: search }));
+
+    navigate(`?${queryParams.toString()}`);
+  }, [dispatch, currentPage, search, navigate, location.search]);
+
   const onPageChange = newPage => {
     navigate(`?page=${newPage}`);
   };
 
-  useEffect(() => {
-    dispatch(getAllNews({ page: currentPage, limit: 9 }));
-  }, [dispatch, currentPage]);
   return (
     <>
       <Container>

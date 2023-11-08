@@ -4,18 +4,18 @@ import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import { Search, Cross } from 'components/icons';
 import { Form, Input, Button, ClearBtn } from './NoticeSearch.styled';
 
-export const NoticeSearch = ({ onSubmitNoticeForm }) => {
+export const NoticeSearch = ({ onFormSubmit }) => {
   const [search, setSearch] = useState('');
 
   useEffect(() => {
-    if (!search) onSubmitNoticeForm(search);
-  }, [onSubmitNoticeForm, search]);
+    if (!search) onFormSubmit(search);
+  }, [onFormSubmit, search]);
 
   const handleSubmit = e => {
     e.preventDefault();
     const searchQuery = search.toLowerCase().trim();
 
-    onSubmitNoticeForm(searchQuery);
+    onFormSubmit(searchQuery);
     if (searchQuery === '') {
       Notify.warning('Please enter something');
       return;
@@ -59,5 +59,5 @@ export const NoticeSearch = ({ onSubmitNoticeForm }) => {
 };
 
 NoticeSearch.propTypes = {
-  onSubmitNoticeForm: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
 };

@@ -152,7 +152,9 @@ export const LocationItem = styled.div`
   }
 `;
 
-export const AgeItem = styled.div`
+export const AgeItem = styled.div.withConfig({
+  shouldForwardProp: prop => prop !== 'inRange',
+})`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -160,7 +162,6 @@ export const AgeItem = styled.div`
 
   width: 80px;
   height: 28px;
-  background-color: ${theme.colors.blueLight2};
   border-radius: 16px;
 
   transition: all ${theme.transition.main};
@@ -171,25 +172,26 @@ export const AgeItem = styled.div`
   font-size: ${theme.fontSizes.xs};
   text-overflow: ellipsis;
 
-  &:hover,
-  &:focus {
-    background-color: ${theme.colors.blue};
-    color: ${theme.colors.white};
-    svg {
-      stroke: ${theme.colors.white};
-    }
+  color: ${({ inRange }) => (inRange ? theme.colors.blue : theme.colors.black)};
+  background-color: ${({ inRange }) =>
+    inRange ? theme.colors.blue : theme.colors.blueLight2};
+
+  & svg {
+    stroke: ${({ inRange }) =>
+      inRange ? theme.colors.white : theme.colors.blue};
   }
 `;
 
-export const SexItem = styled.div`
+export const SexItem = styled.div.withConfig({
+  shouldForwardProp: prop => prop !== 'inRange',
+})`
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 4px;
 
-  width: 80px;
+  width: 95px;
   height: 28px;
-  background-color: ${theme.colors.blueLight2};
   border-radius: 16px;
 
   transition: all ${theme.transition.main};
@@ -199,14 +201,13 @@ export const SexItem = styled.div`
   font-weight: ${theme.fonts.main.semiBold};
   font-size: ${theme.fontSizes.xs};
 
-  &:hover,
-  &:focus {
-    background-color: ${theme.colors.blue};
-    color: ${theme.colors.white};
+  color: ${({ inRange }) => (inRange ? theme.colors.blue : theme.colors.black)};
+  background-color: ${({ inRange }) =>
+    inRange ? theme.colors.blue : theme.colors.blueLight2};
 
-    svg {
-      stroke: ${theme.colors.white};
-    }
+  & svg {
+    stroke: ${({ inRange }) =>
+      inRange ? theme.colors.white : theme.colors.blue};
   }
 `;
 

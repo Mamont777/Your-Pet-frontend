@@ -14,7 +14,10 @@ import {
   getUserCurrentNotices,
 } from 'redux/notices/notices-operations';
 
-export const NoticesCategoriesList = () => {
+export const NoticesCategoriesList = ({
+  chosenAgeFilter,
+  chosenGenderFilter,
+}) => {
   const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
 
@@ -50,7 +53,12 @@ export const NoticesCategoriesList = () => {
     <NoticeList>
       {noticesForList.length > 0 ? (
         noticesForList?.map((item, index) => (
-          <NoticesCategoryItem key={index} notice={item} />
+          <NoticesCategoryItem
+            key={index}
+            notice={item}
+            chosenAgeFilter={chosenAgeFilter}
+            chosenGenderFilter={chosenGenderFilter}
+          />
         ))
       ) : (
         <TextBox>

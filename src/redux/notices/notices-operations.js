@@ -20,6 +20,22 @@ export const fetchNotices = createAsyncThunk(
   }
 );
 
+export const filterNotices = createAsyncThunk(
+  'notices/filterNotices',
+  async (credentials, thunkAPI) => {
+    const { categoryName } = credentials;
+
+    try {
+      const { data } = await axios.get(`/api/notices/filter/${categoryName}`);
+
+      return data;
+    } catch (error) {
+      console.log(error.message);
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const getNoticeById = createAsyncThunk(
   'notices/fetchOne',
   async (noticeId, thunkAPI) => {

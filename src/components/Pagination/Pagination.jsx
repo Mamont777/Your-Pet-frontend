@@ -13,9 +13,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
   const updatePages = useCallback(
     page => {
       const totalDisplayedPages = 5;
-      const halfTotalDisplayedPages = Math.floor(totalDisplayedPages / 2);
+      const halfTotalDisplayedPages = Math.ceil(totalDisplayedPages / 2);
 
-      let startPage = Math.max(page - halfTotalDisplayedPages, 1);
+      let startPage = Math.min(Math.max(page - halfTotalDisplayedPages, 1));
       let endPage = Math.min(startPage + totalDisplayedPages - 1, totalPages);
 
       if (endPage - startPage < totalDisplayedPages - 1) {
@@ -43,24 +43,32 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 
   const handlePrevClick = () => {
     if (currentPage > 1) {
-      onPageChange(currentPage - 1);
-      updatePages(currentPage - 1);
+      const newPage = currentPage - 1;
+      onPageChange(newPage);
+      updatePages(newPage);
     }
   };
 
   const handleNextClick = () => {
     if (currentPage < totalPages) {
-      onPageChange(currentPage + 1);
-      updatePages(currentPage + 1);
+      const newPage = currentPage + 1;
+      onPageChange(newPage);
+      updatePages(newPage);
     }
   };
+
+  const showPrevButton = currentPage > 1;
+  const showNextButton = currentPage < totalPages;
 
   return (
     <Wrapper>
       <PaginationContainer>
-        <PaginationButton onClick={handlePrevClick}>
-          <BsArrowLeft />
-        </PaginationButton>
+        {showPrevButton && (
+          <PaginationButton onClick={handlePrevClick}>
+            <BsArrowLeft />
+          </PaginationButton>
+        )}
+
         <PaginationNumbers>
           {displayedPages.map(page => (
             <PaginationButton
@@ -72,9 +80,11 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             </PaginationButton>
           ))}
         </PaginationNumbers>
-        <PaginationButton onClick={handleNextClick}>
-          <BsArrowRight />
-        </PaginationButton>
+        {showNextButton && (
+          <PaginationButton onClick={handleNextClick}>
+            <BsArrowRight />
+          </PaginationButton>
+        )}
       </PaginationContainer>
     </Wrapper>
   );

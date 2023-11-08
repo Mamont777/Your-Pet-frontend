@@ -7,9 +7,8 @@ export const theme = Object.freeze({
     blue: '#54ADFF',
     blueLight: '#CCE4FB',
     blueLight2: '#c5dff6',
-    grBlue: [
+    grBlue:
       'linear-gradient(to, rgba(155,208,255,1) 3%, rgba(65,158,241,1) 37%)',
-    ],
     grBlue2: 'linear-gradient(315deg, #419EF1 0%, #9BD0FF 100%)',
     green: '#00C3AD',
     red: '#F43F5E',

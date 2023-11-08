@@ -22,13 +22,28 @@ import {
 import { validateField } from '../validatePet';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import { theme } from 'styles';
+import { ModalAddPet } from 'components/Modals';
+import { useNavigate } from 'react-router-dom';
 
 const ThirdStepForm = ({ data, setData, submit, backStep }) => {
   const [isDisabled, setIsDisabled] = useState(true);
   const [errors, setErrors] = useState({});
-
   const [imageValue, setImageValue] = useState('');
   const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+
+  const handleModalOpen = () => {
+    setShowModal(true);
+  };
+
+  const handleModalClose = () => {
+    setShowModal(false);
+    navigate('/user');
+    if (!isDisabled) {
+      submit(false);
+    }
+  };
 
   const isPetPhotoFieldValid = useMemo(
     () => !errors.petURL && !!data.petURL,
@@ -79,6 +94,7 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
 
   return (
     <>
+      {showModal && <ModalAddPet show={showModal} onHide={handleModalClose} />}
       <ThirdStepFormDiv>
         <ThirdStepFormPhotoTitle htmlFor="pet-image" data={data}>
           <ThirdStepFormPhotoDiv>
@@ -139,8 +155,12 @@ const ThirdStepForm = ({ data, setData, submit, backStep }) => {
         <AddPetBtnItem>
           <AddPetBtnNext
             type="button"
-            onClick={submit && (() => submit(false))}
             disabled={isDisabled}
+            onClick={() => {
+              if (!isDisabled) {
+                handleModalOpen();
+              }
+            }}
           >
             Done
             <Paw width="24" height="24" fill="#FEF9F9" />

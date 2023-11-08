@@ -8,17 +8,18 @@ import { Title } from 'components/Notices/Title/Title';
 import { NoticeSearch } from 'components/Notices/NoticeSearch/NoticeSearch';
 import { NoticesCategoriesNav } from 'components/Notices/NoticesCategoriesNav/NoticesCategoriesNav';
 import { AddPetButton } from 'components/Notices/AddPetButton/AddPetButton';
-import { NoticesFilter } from 'components/Notices/NoticesFilter/NoticesFilter';
+import NoticesFilter from 'components/Notices/NoticesFilter/NoticesFilter';
 import { NoticesCategoriesList } from 'components/Notices/NoticesCategoriesList/NoticesCategoriesList';
 import {
   fetchNotices,
+  filterNotices,
   getUserCurrentFavorite,
   getUserCurrentNotices,
 } from 'redux/notices/notices-operations';
 import Loader from 'components/Loader/Loader';
 import { Filter, Boxing } from './NoticesPage.styled';
 import { Container } from 'components/Notices/Container/Container.styled';
-import { ScrollToTopButton } from 'components/Notices/ScrollToTopButton/ScrollToTopButton';
+
 
 function Notices() {
   const [search, setSearch] = useState('');
@@ -28,8 +29,19 @@ function Notices() {
   const allNotices = useSelector(selectAllNotices);
   const dispatch = useDispatch();
   const { categoryName } = useParams();
+  const [genderFilter, setGenderFilter] = useState('');
+  const [ageFilter, setAgeFilter] = useState('');
+
 
   useEffect(() => {
+    const applyFilters = () => {
+      const filters = {
+        age: ageFilter,
+        gender: genderFilter,
+      };
+
+      dispatch(filterNotices(filters));
+    };
     if (
       categoryName === 'sell' ||
       categoryName === 'lost-found' ||
@@ -48,16 +60,9 @@ function Notices() {
       dispatch(getUserCurrentNotices());
       return;
     }
-  }, [categoryName, dispatch, isLoggedIn, search]);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
-  };
-
-  scrollToTop();
+    applyFilters();
+  }, [categoryName, dispatch, isLoggedIn, search, ageFilter, genderFilter]);
 
   return (
     <>
@@ -66,20 +71,25 @@ function Notices() {
         <Container>
           <Title>Find your favorite pet</Title>
 
-          <NoticeSearch onSubmitNoticeForm={setSearch} />
+          <NoticeSearch onFormSubmit={setSearch} />
 
           <Filter>
             <NoticesCategoriesNav />
 
             <Boxing>
-              <NoticesFilter />
+              <NoticesFilter
+                chooseGender={setGenderFilter}
+                chooseAge={setAgeFilter}
+              />
               <AddPetButton />
             </Boxing>
           </Filter>
 
-          <NoticesCategoriesList search={search} />
-
-          <ScrollToTopButton />
+          <NoticesCategoriesList
+            search={search}
+            chosenAgeFilter={ageFilter}
+            chosenGenderFilter={genderFilter}
+          />
         </Container>
       )}
     </>

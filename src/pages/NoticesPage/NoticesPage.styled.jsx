@@ -33,7 +33,7 @@ export const Filter = styled.div`
 
 export const Boxing = styled.div`
   display: flex;
-  align-items: centre;
+  align-items: center;
   justify-content: center;
   gap: 12px;
 

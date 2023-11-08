@@ -10,24 +10,17 @@ import {
 import { Formik } from 'formik';
 import { validatePetSchema } from './validatePet';
 import { addNotice } from 'redux/notices/notices-operations';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import FirstStepForm from './FirstStepForm/FirstStepForm';
 import SecondStepForm from './SecondStepForm/SecondStepForm';
 import ThirdStepFormExpanded from './ThirdStepFormExpanded/ThirdStepFormExpanded';
 import ThirdStepForm from './ThirdStepForm/ThirdStepForm';
-import { selectIsLoading } from 'redux/auth/auth-selectors';
-import { selectNoticesIsLoading } from 'redux/notices/notices-selectors';
-import { ModalAddPet } from '../Modals';
 import { addPet } from 'redux/pets/pets-operations';
 
 const AddPetForm = () => {
   const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const isAddMyPetLoading = useSelector(selectIsLoading);
-  const isAddPetLoading = useSelector(selectNoticesIsLoading);
-  const isLoading = isAddMyPetLoading || isAddPetLoading;
 
   const [step, setStep] = useState(1);
   const [data, setData] = useState({
@@ -44,10 +37,6 @@ const AddPetForm = () => {
   });
 
   const title = getTitle(data);
-
-  const toggleModal = () => {
-    setIsModalOpen(prevState => !prevState);
-  };
 
   const handleNextClick = e => {
     setStep(prevState => prevState + 1);
@@ -92,7 +81,6 @@ const AddPetForm = () => {
       formData.append(key, pets[key]);
     }
     dispatch(addNotice(formData));
-    toggleModal();
 
     switch (data.category) {
       case 'in-good-hands':
@@ -106,7 +94,6 @@ const AddPetForm = () => {
         break;
       case 'pet':
         dispatch(addPet(formData));
-        toggleModal();
         navigate('/user');
         break;
       default:
@@ -175,9 +162,6 @@ const AddPetForm = () => {
           </AddPetContainerForm>
         )}
       </Formik>
-      {isModalOpen && !isLoading && (
-        <ModalAddPet show={isModalOpen} onHide={toggleModal} />
-      )}
     </AddPetDiv>
   );
 };

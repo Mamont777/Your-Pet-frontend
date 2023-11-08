@@ -36,7 +36,11 @@ import {
 } from 'redux/notices/notices-operations';
 import { selectUserCurrentFavoriteNoticesID } from 'redux/notices/notices-selectors';
 
-export const NoticesCategoryItem = ({ notice }) => {
+export const NoticesCategoryItem = ({
+  notice,
+  chosenAgeFilter,
+  chosenGenderFilter,
+}) => {
   const dispatch = useDispatch();
   const [favorite, setFavorite] = useState(false);
   const [showAttentionModal, setShowAttentionModal] = useState(false);
@@ -137,12 +141,12 @@ export const NoticesCategoryItem = ({ notice }) => {
                 {locationSlice(notice.location)}
               </LocationItem>
 
-              <AgeItem>
+              <AgeItem inRange={chosenAgeFilter}>
                 <Clock />
                 {notice.birthday ? converterAge(notice.birthday) : '1 year'}
               </AgeItem>
 
-              <SexItem>
+              <SexItem inRange={chosenGenderFilter}>
                 {notice.sex === 'male' ? <Male /> : <Female />}
                 {notice.sex}
               </SexItem>
