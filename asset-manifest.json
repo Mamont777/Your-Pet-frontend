@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/YourPet/static/css/main.011b03a5.css",
-    "main.js": "/YourPet/static/js/main.e64d8c55.js",
+    "main.js": "/YourPet/static/js/main.c862b74e.js",
     "static/js/812.c1c8f8fa.chunk.js": "/YourPet/static/js/812.c1c8f8fa.chunk.js",
     "static/js/516.704c6f22.chunk.js": "/YourPet/static/js/516.704c6f22.chunk.js",
     "static/js/414.3b343f7c.chunk.js": "/YourPet/static/js/414.3b343f7c.chunk.js",
@@ -49,11 +49,21 @@
     "static/media/catdesktop1x.webp": "/YourPet/static/media/catdesktop1x.ac221e5c2ed4f94b4388.webp",
     "static/media/catmobile2x.webp": "/YourPet/static/media/catmobile2x.ef215616a0ff850d5b3c.webp",
     "static/media/dogmobile1x.webp": "/YourPet/static/media/dogmobile1x.31f0a2f502f5c3f8c446.webp",
+    "static/media/vetplanet.webp": "/YourPet/static/media/vetplanet.31e9a1fdc3db527877a1.webp",
+    "static/media/aibolit.webp": "/YourPet/static/media/aibolit.3a94ad4bb3ad5c2225ec.webp",
     "static/media/buldogmobile1x.webp": "/YourPet/static/media/buldogmobile1x.f06b374cf4da61096a8f.webp",
+    "static/media/a_vet.webp": "/YourPet/static/media/a_vet.fdca741b1c6d9cb6758d.webp",
+    "static/media/pes_kit.webp": "/YourPet/static/media/pes_kit.26094bbfbfaa2e9061b7.webp",
+    "static/media/drug.webp": "/YourPet/static/media/drug.f340e99ccc3f35012124.webp",
+    "static/media/hels.webp": "/YourPet/static/media/hels.bb238bed4f66edbb8779.webp",
     "static/media/catmobile1x.webp": "/YourPet/static/media/catmobile1x.370dbd4e201c9ab5cfe0.webp",
+    "static/media/terra_vet.webp": "/YourPet/static/media/terra_vet.c0e7257efc9b3b6a9748.webp",
+    "static/media/zpolis.webp": "/YourPet/static/media/zpolis.cb30cdfc76d0ad081519.webp",
+    "static/media/Animal_clinic.webp": "/YourPet/static/media/Animal_clinic.69831ca58eff31fc6074.webp",
+    "static/media/dingo.webp": "/YourPet/static/media/dingo.ef7b16d2e9a192359eb1.webp",
     "index.html": "/YourPet/index.html",
     "main.011b03a5.css.map": "/YourPet/static/css/main.011b03a5.css.map",
-    "main.e64d8c55.js.map": "/YourPet/static/js/main.e64d8c55.js.map",
+    "main.c862b74e.js.map": "/YourPet/static/js/main.c862b74e.js.map",
     "812.c1c8f8fa.chunk.js.map": "/YourPet/static/js/812.c1c8f8fa.chunk.js.map",
     "516.704c6f22.chunk.js.map": "/YourPet/static/js/516.704c6f22.chunk.js.map",
     "414.3b343f7c.chunk.js.map": "/YourPet/static/js/414.3b343f7c.chunk.js.map",
@@ -67,6 +77,6 @@
   },
   "entrypoints": [
     "static/css/main.011b03a5.css",
-    "static/js/main.e64d8c55.js"
+    "static/js/main.c862b74e.js"
   ]
 }
